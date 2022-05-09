@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+// SPDX-License-Identifier: BUSL-1.1
+
 import './App.css';
+import React from 'react';
+import { Card } from 'react-bootstrap';
+import NavigationBar from './components/NavigationBar';
+import Body from './components/Body';
+//import Web3 from 'web3';
+//import { ethers } from 'ethers';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [provider, setProvider] = React.useState(null);
+  if (!window.web3) return (<> <NavigationBar provider={provider} setProvider={setProvider} /> <br/> "Loading..." </>);
+  return (<Card><Card.Body>
+    <NavigationBar provider={provider} setProvider={setProvider} />
+    <br />
+    <Body provider={provider}/>
+    </Card.Body></Card>);
 }
 
 export default App;
