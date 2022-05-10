@@ -5,7 +5,7 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract FTSwap {
-    mapping (bytes32 => bool) public nullifiers; 
+    mapping (bytes32 => bool) public nullifiers;
 
     function isNullified(address maker, uint256 offerId) public view returns (bool) {
         return nullifiers[keccak256(abi.encodePacked(maker, offerId))];
@@ -31,7 +31,7 @@ contract FTSwap {
         return ecrecover(prefixedHashMessage, v, r, s);
     }
 
-    function checkValidOffer(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint8 v, bytes32 r, bytes32 s) public view returns (bool) {
+    function checkValidOffer(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint8 v, bytes32 r, bytes32 s) external view returns (bool) {
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, offerHash(offerId, token0, token1, amount0, amount1)));
         address maker = ecrecover(prefixedHashMessage, v, r, s); // Could be 0-address
