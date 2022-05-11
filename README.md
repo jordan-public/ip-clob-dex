@@ -15,6 +15,16 @@ In order keep participants current with the latest CLOB state, we use the IPFS D
 The front-end is written in React and uses the IPFS APIs as well as Ethers.js to check conditions and execute on-chain transactions.
 We have implemented only EVM execution, although the same technology can be used for many other blockchains.
 
+## IPFS Configuration
+
+In order to enable the IPFS publish-subscribe service, the following section should be in the "config" file of the IPFS service:
+```json
+  "Pubsub": {
+    "DisableSigning": false,
+    "Enabled": true,
+    "Router": ""
+  },
+```
 ## Hardhat Project details
 
 Tasks:
