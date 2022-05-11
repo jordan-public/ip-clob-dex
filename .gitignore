@@ -6,5 +6,5 @@ typechain
 
 #Hardhat files
 cache
-artifacts
-deployed
+artifacts/*/
+deployed/*.json
