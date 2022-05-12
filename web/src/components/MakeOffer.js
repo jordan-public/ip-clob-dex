@@ -54,6 +54,8 @@ console.log("verified: ", await ftSwap.checkValidOffer(offerId, t1Address, t2Add
 
         const offer = { ID: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount };
 console.log(offer);
+await window.ipfs.files.mkdir("/test876976896" + '/documents', { parents: true });
+console.log("dir created - test");
         // Create DAG
         const offerCID = await window.ipfs.dag.put(offer);
 console.log("Offer CID: ", offerCID, offerCID.toString());
