@@ -52,12 +52,18 @@ console.log("split sig: ", splitSignature);
 console.log("signed by: ", await ftSwap.checkSig(offerId, t1Address, t2Address, t1Amount, t2Amount, splitSignature.v, splitSignature.r, splitSignature.s));
 console.log("verified: ", await ftSwap.checkValidOffer(offerId, t1Address, t2Address, t1Amount, t2Amount, splitSignature.v, splitSignature.r, splitSignature.s));
 
-        const offer = { ID: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount }
+        const offer = { ID: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount };
 console.log(offer);
         // Create DAG
+        const offerCID = await window.ipfs.dag.put(offer);
+console.log("Offer CID: ", offerCID, offerCID.toString());
         // Pin DAG
-        // Receive last root
+        // Pin DAG
+        // Receive last root (move this to worker thread)
+        const lastRootCID = "TBD"; 
         // Combine
+        const newRootCID = await window.ipfs.dag.put({ Offer: offerCID, Next: lastRootCID});
+console.log("New root CID", newRootCID);
         // Pin new root
         // Broadcast new root
     }
