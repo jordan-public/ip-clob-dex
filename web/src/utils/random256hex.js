@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BUSL-1.1
 export default function random256hex() {
     const bytes = new Uint8Array(32);
     

@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: BUSL-1.1
 import React from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
-import { ethers } from 'ethers';
-import FTSwap from './FTSwap';
-import MakeOffer from './MakeOffer';
+import OrderBook from './OrderBook';
 
 function Body({provider}) {
     const [t1Address, setT1Address] = React.useState("");
@@ -16,14 +14,6 @@ function Body({provider}) {
 
     const onT2AddressChange = (e) => {
         setT2Address(e.currentTarget.value);
-    }
-
-    const onLoadPair = async () => {
-        if (!provider) { window.alert('No provider'); return; }
-        // const signer = provider.getSigner();
-        // const pf = new ethers.Contract(dpswapPairFactory.address, afswapPairFactory.abi, signer);
-        // const pairAddress = await pf.getPair(t1Address, t2Address);
-        // setSwapPair(new ethers.Contract(pairAddress, afswapPair.abi, signer));
     }
 
     return (<>
@@ -46,15 +36,10 @@ function Body({provider}) {
                         Enter the address of the token contract.
                         </Form.Text>
                     </Form.Group>
-
-                    <Button variant="primary" onClick={onLoadPair} >
-                        Load
-                    </Button>
                 </Form>
             </Card.Body>
         </Card>
-        <FTSwap t1Address={t1Address} t2Address={t2Address} provider={provider} />
-        <MakeOffer t1Address={t1Address} t2Address={t2Address} provider={provider}/>
+        <OrderBook t1Address={t1Address} t2Address={t2Address} provider={provider} />
         </>);
 }
 

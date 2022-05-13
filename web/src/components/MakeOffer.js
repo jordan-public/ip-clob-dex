@@ -8,7 +8,7 @@ import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
 import dpFTSwap from '../@deployed/FTSwap31337.json';
 import random256hex from '../utils/random256hex';
 
-function MakeOffer({t1Address, t2Address, provider}) {
+function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
     const [t1Amount, setT1Amount] = React.useState("");
     const [t2Amount, setT2Amount] = React.useState("");
 
@@ -45,17 +45,19 @@ console.log("verified: ", await ftSwap.checkValidOffer(offerId, t1Address, t2Add
         const offer = { ID: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount };
 console.log("Offer: ", offer);
         // Create DAG
-        const offerCID = await window.ipfs.dag.put(offer);
-console.log("Offer CID: ", offerCID, offerCID.toString());
+        const offerCid = await window.ipfs.dag.put(offer);
+console.log("Offer CID: ", offerCid, offerCid.toString());
         // Pin DAG
-
+// !!!ToDo
         // Receive last root (move this to worker thread)
         const lastRootCID = "TBD"; 
         // Combine
-        const newRootCID = await window.ipfs.dag.put({ Offer: offerCID, Next: lastRootCID});
-console.log("New root CID", newRootCID, newRootCID.toString());
+        const newRootCid = await window.ipfs.dag.put({ Offer: offerCid, Next: lastRootCID});
+console.log("New root CID", newRootCid, newRootCid.toString());
         // Pin new root
+// !!!ToDo
         // Broadcast new root
+        await window.ipfs.pubsub.publish(offerTopic, offerCid);
     }
 
     return (
