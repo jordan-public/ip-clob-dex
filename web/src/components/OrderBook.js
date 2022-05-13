@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: BUSL-1.1
 import React from 'react';
-import { Form, Button, Card, CardGroup } from 'react-bootstrap';
+import { Card, CardGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
-import { ethers } from 'ethers';
 import OfferTable from './OfferTable';
 
 function OrderBook({t1Address, t2Address, provider}) {

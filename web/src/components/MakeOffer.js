@@ -37,8 +37,6 @@ function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
         const offerHash = await ftSwap.offerHash(offerId, t1Address, t2Address, t1Amount, t2Amount);
         const signature = await signer.signMessage(ethers.utils.arrayify(offerHash));
         const splitSignature = ethers.utils.splitSignature(signature);
-console.log(signature);
-console.log("split sig: ", splitSignature);
 console.log("signed by: ", await ftSwap.checkSig(offerId, t1Address, t2Address, t1Amount, t2Amount, splitSignature.v, splitSignature.r, splitSignature.s));
 console.log("verified: ", await ftSwap.checkValidOffer(offerId, t1Address, t2Address, t1Amount, t2Amount, splitSignature.v, splitSignature.r, splitSignature.s));
 
@@ -57,7 +55,7 @@ console.log("New root CID", newRootCid, newRootCid.toString());
         // Pin new root
 // !!!ToDo
         // Broadcast new root
-        await window.ipfs.pubsub.publish(offerTopic, offerCid);
+        await window.ipfs.pubsub.publish(offerTopic, offer);
     }
 
     return (
