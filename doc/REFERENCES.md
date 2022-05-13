@@ -13,3 +13,6 @@ headers: {
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     },
 ```
+
+API returns 403 when Origin header is set without CORS setup:
+https://github.com/ipfs/go-ipfs/issues/6204
