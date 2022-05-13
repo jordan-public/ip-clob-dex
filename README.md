@@ -27,12 +27,27 @@ npm install
 ## IPFS Configuration
 
 In order to enable the IPFS publish-subscribe service, the following section should be in the "config" file of the IPFS service:
+
 ```json
   "Pubsub": {
     "DisableSigning": false,
     "Enabled": true,
     "Router": ""
   },
+```
+
+For testing from web site served by the React tets web server from localhost:3000 add:
+```json
+	"API": {
+		"HTTPHeaders": {
+			"Access-Control-Allow-Origin": [
+				"https://webui.ipfs.io",
+				"http://webui.ipfs.io.ipns.localhost:8080",
+				"http://127.0.0.1:5001",
+				"http://localhost:3000"
+			]
+		}
+	},
 ```
 ## Hardhat Project details
 
