@@ -47,7 +47,7 @@ console.log("Expiration: ", new Date(expirationTime * 1000).toString());
 console.log("signed by: ", await ftSwap.checkSig(offerId, t1Address, t2Address, t1Amount, t2Amount, expirationTime, splitSignature.v, splitSignature.r, splitSignature.s));
 console.log("verified: ", await ftSwap.checkValidOffer(offerId, t1Address, t2Address, t1Amount, t2Amount, expirationTime, splitSignature.v, splitSignature.r, splitSignature.s));
 
-        const offer = { ID: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount, Expiration: expirationTime };
+        const offer = { Id: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount, Expiration: expirationTime };
 console.log("Offer: ", offer);
         // Create DAG
         const offerCid = await window.ipfs.dag.put(offer);
