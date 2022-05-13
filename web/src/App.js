@@ -15,8 +15,8 @@ function App() {
   React.useEffect(() => {
     async function getIPFS() {
       if (typeof window.ipfs === "undefined") {
-        window.ipfs = await IPFS.create();
-        //window.ipfs = await IPFS.create("http://localhost:5001");
+        //window.ipfs = await IPFS.create();
+        window.ipfs = await IPFS.create("http://localhost:5001");
         console.log("Using local IPFS node.", window.ipfs);
       } else {
         console.log("Using pre-injected IPFS node.", window.ipfs);
