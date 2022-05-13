@@ -11,6 +11,7 @@ import random256hex from '../utils/random256hex';
 function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
     const [t1Amount, setT1Amount] = React.useState("");
     const [t2Amount, setT2Amount] = React.useState("");
+    const [expiration, setExpiration] = React.useState(60);
 
     const onT1AmountChange = (e) => {
         setT1Amount(e.currentTarget.value);
@@ -18,6 +19,10 @@ function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
 
     const onT2AmountChange = (e) => {
         setT2Amount(e.currentTarget.value);
+    }
+
+    const onExpirationChange = (e) => {
+        setExpiration(parseInt(e.currentTarget.value));
     }
 
     const onMakeOffer = async () => {
@@ -34,13 +39,15 @@ function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
             window.alert('Completed. Block hash: ' + r.blockHash);    
         }
 
-        const offerHash = await ftSwap.offerHash(offerId, t1Address, t2Address, t1Amount, t2Amount);
+        const expirationTime = Math.floor(expiration*60 + (new Date().getTime() / 1000));
+console.log("Expiration: ", new Date(expirationTime * 1000).toString());
+        const offerHash = await ftSwap.offerHash(offerId, t1Address, t2Address, t1Amount, t2Amount, expirationTime);
         const signature = await signer.signMessage(ethers.utils.arrayify(offerHash));
         const splitSignature = ethers.utils.splitSignature(signature);
-console.log("signed by: ", await ftSwap.checkSig(offerId, t1Address, t2Address, t1Amount, t2Amount, splitSignature.v, splitSignature.r, splitSignature.s));
-console.log("verified: ", await ftSwap.checkValidOffer(offerId, t1Address, t2Address, t1Amount, t2Amount, splitSignature.v, splitSignature.r, splitSignature.s));
+console.log("signed by: ", await ftSwap.checkSig(offerId, t1Address, t2Address, t1Amount, t2Amount, expirationTime, splitSignature.v, splitSignature.r, splitSignature.s));
+console.log("verified: ", await ftSwap.checkValidOffer(offerId, t1Address, t2Address, t1Amount, t2Amount, expirationTime, splitSignature.v, splitSignature.r, splitSignature.s));
 
-        const offer = { ID: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount };
+        const offer = { ID: offerId, Signature: signature, Asset0: t1Address, Asset1: t2Address, Amount0: t1Amount, Amount1: t2Amount, Expiration: expirationTime };
 console.log("Offer: ", offer);
         // Create DAG
         const offerCid = await window.ipfs.dag.put(offer);
@@ -76,6 +83,14 @@ console.log("New root CID", newRootCid, newRootCid.toString());
                         <Form.Control  onChange={onT2AmountChange} />
                         <Form.Text className="text-muted">
                         Enter the amount of the second Token.
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formT2">
+                        <Form.Label>Expiration (minutes)</Form.Label>
+                        <Form.Control  onChange={onExpirationChange} />
+                        <Form.Text className="text-muted">
+                        Enter the order expiration time in minutes.
                         </Form.Text>
                     </Form.Group>
 

@@ -21,34 +21,33 @@ contract FTSwap {
         require(success && (data.length == 0 || abi.decode(data, (bool))), "IPDEX: Transfer failed");
     }
 
-    function offerHash(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1) public view returns (bytes32) {
-        return keccak256(abi.encodePacked(address(this), offerId, token0, token1, amount0, amount1));
+    function offerHash(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration) public view returns (bytes32) {
+        return keccak256(abi.encodePacked(address(this), offerId, token0, token1, amount0, amount1, expiration));
     }
 
-    function checkSig(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint8 v, bytes32 r, bytes32 s) public view returns (address) {
+    function checkSig(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) public view returns (address) {
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, offerHash(offerId, token0, token1, amount0, amount1)));
+        bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, offerHash(offerId, token0, token1, amount0, amount1, expiration)));
         return ecrecover(prefixedHashMessage, v, r, s);
     }
 
-    function checkValidOffer(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint8 v, bytes32 r, bytes32 s) external view returns (bool) {
+    function checkValidOffer(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external view returns (bool) {
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, offerHash(offerId, token0, token1, amount0, amount1)));
+        bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, offerHash(offerId, token0, token1, amount0, amount1, expiration)));
         address maker = ecrecover(prefixedHashMessage, v, r, s); // Could be 0-address
-        return !isNullified(maker, offerId) && IERC20(token0).allowance(maker, address(this)) >= amount0;
+        return expiration <= block.timestamp && !isNullified(maker, offerId) && IERC20(token0).allowance(maker, address(this)) >= amount0;
     }
 
-    function swap(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint8 v, bytes32 r, bytes32 s) external {
-        address maker = checkSig(offerId, token0, token1, amount0, amount1, v, r, s);
+    function swap(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external {
+        require(expiration <= block.timestamp, "IPDEX: Expired");
+        address maker = checkSig(offerId, token0, token1, amount0, amount1, expiration, v, r, s);
         require(!isNullified(maker, offerId), "IPDEX: Nullified offer");
         nullify(maker, offerId);
         safeTransferFrom(token0, maker, msg.sender, amount0);
         safeTransferFrom(token1, msg.sender, maker, amount1);
     }
 
-    function cancelOffer(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint8 v, bytes32 r, bytes32 s) external {
-        address maker = checkSig(offerId, token0, token1, amount0, amount1, v, r, s);
-        require(msg.sender == maker, "IPDEX: Unauthorized");
-        nullify(maker, offerId);
+    function cancelOffer(uint256 offerId) external {
+        nullify(msg.sender, offerId);
     }
 }
