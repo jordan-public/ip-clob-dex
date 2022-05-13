@@ -58,11 +58,11 @@ console.log("Offer CID: ", offerCid, offerCid.toString());
         const lastRootCID = "TBD"; 
         // Combine
         const newRootCid = await window.ipfs.dag.put({ Offer: offerCid, Next: lastRootCID});
-console.log("New root CID", newRootCid, newRootCid.toString());
+console.log("Updated CID", newRootCid, newRootCid.toString());
         // Pin new root
 // !!!ToDo
         // Broadcast new root
-        await window.ipfs.pubsub.publish(offerTopic, offer);
+        await window.ipfs.pubsub.publish(offerTopic, offerCid.toString());
     }
 
     return (

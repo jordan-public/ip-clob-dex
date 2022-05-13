@@ -8,9 +8,12 @@ import MakeOffer from './MakeOffer';
 
 function OrderBook({t1Address, t2Address, provider}) {
     const [offerTopic, setOfferTopic] = React.useState("");
+    const [rootCid, setRootCid] = React.useState("");
 
-    const updateHandler = cid => {
+    const updateHandler = cidMsg => {
+        const cid = String.fromCharCode(...cidMsg.data);
         console.log("New root CID: ", cid);
+        setRootCid(cid);
         //window.ipfs.dag.get();
     }
 
@@ -28,9 +31,12 @@ function OrderBook({t1Address, t2Address, provider}) {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <td>Amount1</td><td>Amount2</td>
+                    <td>Amount1</td><td>Amount2</td><td>Expiration</td>
                 </tr>
             </thead>
+            <tbody>
+                <tr><Offer offerCid={rootCid} provider={provider} /></tr>
+            </tbody>
         </Table>
         <MakeOffer t1Address={t1Address} t2Address={t2Address} offerTopic={offerTopic} provider={provider}/>
     </>);
