@@ -17,3 +17,6 @@ headers: {
 
 API returns 403 when Origin header is set without CORS setup:
 https://github.com/ipfs/go-ipfs/issues/6204
+
+Error: No codec found for "undefined"
+https://bytemeta.vip/repo/ipfs/js-ipfs/issues/3854

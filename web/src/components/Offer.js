@@ -3,7 +3,7 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { ethers } from 'ethers';
-import CID from 'cids';
+import { CID } from 'multiformats/cid';
 
 function Offer({offerCid, provider}) {
     const [offer, setOffer] = React.useState(null);
@@ -15,8 +15,8 @@ if (offerCid === null || offerCid === "") {
     console.log("Null offerCid - this will not happen when offer in a list");
     return;
 }
-console.log(new CID(offerCid));
-            const offer = await window.ipfs.dag.get(new CID(offerCid));
+console.log(CID.parse(offerCid));
+            const offer = await window.ipfs.dag.get(CID.parse(offerCid));
 console.log("Offer from IPFS: ", offer.value);
             setOffer(offer.value);
         }) ();

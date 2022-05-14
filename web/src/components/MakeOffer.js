@@ -34,9 +34,15 @@ function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
         const token1 = new ethers.Contract(t1Address, afIERC20.abi, signer);
         const allowance = await token1.allowance(await signer.getAddress(), ftSwap.address);
         if (allowance.lt(BigNumber.from('0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'))) {
-            const tx = await token1.approve(ftSwap.address, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
-            const r = await tx.wait();
-            window.alert('Completed. Block hash: ' + r.blockHash);    
+            try {
+                const tx = await token1.approve(ftSwap.address, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
+
+                const r = await tx.wait();
+                window.alert('Completed. Block hash: ' + r.blockHash);        
+            } catch(e) {
+                console.log("Error: ", e);
+                window.alert(e.message);
+            }
         }
 
         const expirationTime = Math.floor(expiration*60 + (new Date().getTime() / 1000));
