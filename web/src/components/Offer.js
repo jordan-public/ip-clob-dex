@@ -1,12 +1,16 @@
 // SPDX-License-Identifier: BUSL-1.1
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { ethers } from 'ethers';
 import { CID } from 'multiformats/cid';
+import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
+import dpFTSwap from '../@deployed/FTSwap31337.json';
 
 function Offer({offerCid, provider}) {
     const [offer, setOffer] = React.useState(null);
+    const [owner, setOwner] = React.useState(null);
+    const [signerAddress, setSignerAddress] = React.useState(null);
     
     React.useEffect(() => {
         (async () => {
@@ -16,17 +20,61 @@ if (offerCid === null || offerCid === "") {
     return;
 }
 console.log(CID.parse(offerCid));
-            const offer = await window.ipfs.dag.get(CID.parse(offerCid));
-console.log("Offer from IPFS: ", offer.value);
-            setOffer(offer.value);
+            const { value: o } = await window.ipfs.dag.get(CID.parse(offerCid));
+console.log("Offer from IPFS: ", o);
+            setOffer(o);
+
+            const signer = provider.getSigner();
+            setSignerAddress(await signer.getAddress());
+            const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+            const splitSignature = ethers.utils.splitSignature(o.Signature);
+            const ow = await ftSwap.checkSig(o.Id, o.Asset0, o.Asset1, o.Amount0, o.Amount1, o.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
+            setOwner(ow);
         }) ();
     }, [offerCid, provider]);
     
-    return (<>
-        <td>{offer && offer.Amount0}</td>
-        <td>{offer && offer.Amount0}</td>
-        <td>{offer && new Date(parseInt(offer.Expiration) * 1000).toString()}</td>
-    </>);
+    const onTakeOffer = async () => {
+        const signer = provider.getSigner();
+        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const splitSignature = ethers.utils.splitSignature(offer.Signature);
+        try {
+            const tx = await ftSwap.swap(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
+
+            const r = await tx.wait();
+            window.alert('Completed. Block hash: ' + r.blockHash);        
+        } catch(e) {
+            console.log("Error: ", e);
+            window.alert(e.message);
+        }
+    }
+
+    const onCancelOffer = async () => {
+        const signer = provider.getSigner();
+        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        try {
+            const tx = await ftSwap.cancelOffer(offer.Id);
+
+            const r = await tx.wait();
+            window.alert('Completed. Block hash: ' + r.blockHash);        
+        } catch(e) {
+            console.log("Error: ", e);
+            window.alert(e.message);
+        }
+    }
+
+    return (<td>
+        Amount: {offer && offer.Amount0} <br/>
+        for: {offer && offer.Amount1} <br/>
+        Price: {offer && offer.Amount1 / offer.Amount0} <br/>
+        Price: 1 / {offer && offer.Amount0 / offer.Amount1} <br/>
+        Expires: {offer && new Date(parseInt(offer.Expiration) * 1000).toLocaleDateString()} <br/>
+        { owner !== signerAddress && <Button variant="primary" onClick={onTakeOffer} >
+            Take
+        </Button> }
+        { owner === signerAddress && <Button variant="primary" onClick={onCancelOffer} >
+            Cancel
+        </Button> }
+    </td>);
 }
 
 export default Offer;

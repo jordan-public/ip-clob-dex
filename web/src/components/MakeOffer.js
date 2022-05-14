@@ -73,7 +73,7 @@ console.log("Updated CID", newRootCid, newRootCid.toString());
 
     return (
         <Card>
-            <Card.Header>Make Offer</Card.Header>
+            <Card.Header>Make</Card.Header>
             <Card.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="formT1">

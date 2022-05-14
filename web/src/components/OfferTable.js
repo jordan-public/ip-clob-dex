@@ -36,11 +36,6 @@ console.log("Subscribing to topic: ", t);
     
     return (<>
         <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <td>Amount1</td><td>Amount2</td><td>Expiration</td>
-                </tr>
-            </thead>
             <tbody>
                 <tr><Offer offerCid={rootCid} provider={provider} /></tr>
             </tbody>
