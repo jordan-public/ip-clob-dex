@@ -4,6 +4,7 @@ https://blog.ricmoo.com/verifying-messages-in-solidity-50a94f82b2ca
 To fix CORS issue:
 https://stackoverflow.com/questions/67181658/create-react-app-web-server-respond-with-cors-headers
 https://www.npmjs.com/package/@craco/craco
+https://github.com/ipfs/js-ipfs/blob/master/docs/CORS.md
 
 node_modules/react-scripts/config/webpackDevServer.config.js
 ```json
