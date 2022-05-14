@@ -35,11 +35,11 @@ contract FTSwap {
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, offerHash(offerId, token0, token1, amount0, amount1, expiration)));
         address maker = ecrecover(prefixedHashMessage, v, r, s); // Could be 0-address
-        return expiration <= block.timestamp && !isNullified(maker, offerId) && IERC20(token0).allowance(maker, address(this)) >= amount0;
+        return expiration >= block.timestamp && !isNullified(maker, offerId) && IERC20(token0).allowance(maker, address(this)) >= amount0;
     }
 
     function swap(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external {
-        require(expiration <= block.timestamp, "IPDEX: Expired");
+        require(expiration >= block.timestamp, "IPDEX: Expired");
         address maker = checkSig(offerId, token0, token1, amount0, amount1, expiration, v, r, s);
         require(!isNullified(maker, offerId), "IPDEX: Nullified offer");
         nullify(maker, offerId);
