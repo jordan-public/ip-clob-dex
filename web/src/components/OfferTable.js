@@ -23,7 +23,14 @@ function OrderBook({t1Address, t2Address, provider}) {
             if (t !== "") console.log("Offer topic(", t1Address, t2Address, "): ", t);
             if (t !== offerTopic && offerTopic !== "") await window.ipfs.pubsub.unsubscribe(offerTopic);
             setOfferTopic(t);
-            await window.ipfs.pubsub.subscribe(t, updateHandler);
+            if (t !== "") {
+console.log("Subscribing to topic: ", t);
+                try { // May already be subscribed
+                    await window.ipfs.pubsub.subscribe(t, updateHandler);
+                } catch(_) { 
+                    console.log("Error: Already subscribed to topic: ", t);
+                }
+            }
         }) ();
     }, [t1Address, t2Address, provider]);
     

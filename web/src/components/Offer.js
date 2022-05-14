@@ -11,9 +11,13 @@ function Offer({offerCid, provider}) {
     React.useEffect(() => {
         (async () => {
 console.log("Offer CID: ", offerCid);
+if (offerCid === null || offerCid === "") {
+    console.log("Null offerCid - this will not happen when offer in a list");
+    return;
+}
 console.log(new CID(offerCid));
             const offer = await window.ipfs.dag.get(new CID(offerCid));
- console.log("Offer from IPFS: ", offer.value);
+console.log("Offer from IPFS: ", offer.value);
             setOffer(offer.value);
         }) ();
     }, [offerCid, provider]);
