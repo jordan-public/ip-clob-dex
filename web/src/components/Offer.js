@@ -16,6 +16,7 @@ function Offer({offerCid, provider}) {
     const [signerAddress, setSignerAddress] = React.useState(null);
     const [t1Decimals, setT1Decimals] = React.useState(null);
     const [t2Decimals, setT2Decimals] = React.useState(null);
+    const [partAvaliable, setPartAvaliable] = React.useState("0");
     
     React.useEffect(() => {
         (async () => {
@@ -35,6 +36,9 @@ console.log("Offer from IPFS: ", o);
             const splitSignature = ethers.utils.splitSignature(o.Signature);
             const ow = await ftSwap.checkSig(o.Id, o.Asset0, o.Asset1, o.Amount0, o.Amount1, o.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             setOwner(ow);
+
+            const p = await ftSwap.partNullified(ow, o.Id);
+            setPartAvaliable(BigNumber.from(10).pow(BigNumber.from(18)).sub(p).toString());            
 
             const token1 = new ethers.Contract(o.Asset0, afERC20.abi, signer);
             setT1Decimals(await token1.decimals());
@@ -96,6 +100,7 @@ console.log("Offer from IPFS: ", o);
         Price: {offer && offer.Amount1 / offer.Amount0} <br/>
         Price: 1 / {offer && offer.Amount0 / offer.Amount1} <br/>
         Expires: {offer && new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
+        Part available: { offer && uint256ToDecimal(partAvaliable, 18) } <br/>
         { owner !== signerAddress && <Button variant="primary" onClick={onTakeOffer} >
             Take
         </Button> }
