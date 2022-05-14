@@ -81,6 +81,7 @@ console.log("Offer from IPFS: ", o);
     }
 
     return (<td>
+        Id: { offer && offer.Id } <br/>
         Amount: {offer && offer.Amount0} <br/>
         for: {offer && offer.Amount1} <br/>
         Price: {offer && offer.Amount1 / offer.Amount0} <br/>

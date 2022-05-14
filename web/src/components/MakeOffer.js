@@ -3,6 +3,7 @@ import React from 'react';
 import { Form, Button, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
+import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
 import dpFTSwap from '../@deployed/FTSwap31337.json';
@@ -11,14 +12,26 @@ import random256hex from '../utils/random256hex';
 function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
     const [t1Amount, setT1Amount] = React.useState("");
     const [t2Amount, setT2Amount] = React.useState("");
+    const [t1Decimals, setT1Decimals] = React.useState("");
+    const [t2Decimals, setT2Decimals] = React.useState("");
     const [expiration, setExpiration] = React.useState(60);
 
+    React.useEffect(() => {
+        (async () => {
+            const signer = provider.getSigner();
+            const token1 = new ethers.Contract(t1Address, afERC20.abi, signer);
+            setT1Decimals(await token1.decimals());
+            const token2 = new ethers.Contract(t2Address, afERC20.abi, signer);
+            setT1Decimals(await token2.decimals());  
+        }) ();
+    }, [t1Address, t2Address, offerTopic, provider]);
+
     const onT1AmountChange = (e) => {
-        setT1Amount(e.currentTarget.value);
+        setT1Amount(decimalToUint256(e.currentTarget.value, t1Decimals));
     }
 
     const onT2AmountChange = (e) => {
-        setT2Amount(e.currentTarget.value);
+        setT2Amount(decimalToUint256(e.currentTarget.value, t2Decimals));
     }
 
     const onExpirationChange = (e) => {
