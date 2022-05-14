@@ -35,12 +35,13 @@ console.log("Subscribing to topic: ", t);
     }, [t1Address, t2Address, provider]);
     
     return (<>
+        <MakeOffer t1Address={t1Address} t2Address={t2Address} offerTopic={offerTopic} provider={provider}/>
+        <br/>
         <Table striped bordered hover>
             <tbody>
                 <tr><Offer offerCid={rootCid} provider={provider} /></tr>
             </tbody>
         </Table>
-        <MakeOffer t1Address={t1Address} t2Address={t2Address} offerTopic={offerTopic} provider={provider}/>
     </>);
 }
 

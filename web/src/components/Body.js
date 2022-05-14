@@ -27,7 +27,7 @@ function Body({provider}) {
     }
 
     return (<>
-        <Accordion>
+        <Accordion defaultActiveKey={ (t1Address === "" || t2Address === "") && "0"}>
             <Accordion.Item eventKey="0">
             <Accordion.Header>{t2Symbol} / {t1Symbol}</Accordion.Header>
             <Accordion.Body>

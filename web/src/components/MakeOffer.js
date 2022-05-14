@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 import React from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
 import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json';
@@ -72,9 +72,10 @@ console.log("Updated CID", newRootCid, newRootCid.toString());
     }
 
     return (
-        <Card>
-            <Card.Header>Make</Card.Header>
-            <Card.Body>
+        <Accordion>
+            <Accordion.Item eventKey="0">
+            <Accordion.Header>Make</Accordion.Header>
+            <Accordion.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="formT1">
                         <Form.Label>Token1 amount</Form.Label>
@@ -104,8 +105,9 @@ console.log("Updated CID", newRootCid, newRootCid.toString());
                         Make Offer
                     </Button>
                 </Form>
-            </Card.Body>
-        </Card>);
+            </Accordion.Body>
+            </Accordion.Item>
+        </Accordion>);
 }
 
 export default MakeOffer;
