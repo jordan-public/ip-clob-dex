@@ -39,7 +39,7 @@ async function main() {
   console.log("Token 1 deployed to:", t1.address);
 
   const T2 = await hre.ethers.getContractFactory("FT");
-  const t2 = await T2.deploy("Token 1", "T1", "1000000000000000000000");
+  const t2 = await T2.deploy("Token 2", "T2", "1000000000000000000000");
   await t2.deployed();
   fs.writeFile("deployed/Token2" + t2.deployTransaction.chainId + '.json', JSON.stringify(t2, undefined, 2), (err) => { if (err) console.error(err) });
   console.log("Token 2 deployed to:", t2.address);
