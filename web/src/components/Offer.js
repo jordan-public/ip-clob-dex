@@ -10,8 +10,7 @@ import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
 import dpFTSwap from '../@deployed/FTSwap31337.json';
 import uint256ToDecimal from '../utils/uint256ToDecimal';
 
-function Offer({offerCid, provider}) {
-    const [offer, setOffer] = React.useState(null);
+function Offer({offer, provider}) {
     const [owner, setOwner] = React.useState(null);
     const [signerAddress, setSignerAddress] = React.useState(null);
     const [t1Decimals, setT1Decimals] = React.useState(null);
@@ -21,33 +20,22 @@ function Offer({offerCid, provider}) {
     
     React.useEffect(() => {
         (async () => {
-console.log("Offer CID: ", offerCid);
-if (offerCid === null || offerCid === "") {
-    console.log("Null offerCid - this will not happen when offer in a list");
-    return;
-}
-console.log(offerCid.toString());
-console.log(CID.parse(offerCid));
-            const { value: o } = await window.ipfs.dag.get(CID.parse(offerCid));
-console.log("Offer from IPFS: ", o);
-            setOffer(o);
-
             const signer = provider.getSigner();
             setSignerAddress(await signer.getAddress());
             const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
-            const splitSignature = ethers.utils.splitSignature(o.Signature);
-            const ow = await ftSwap.checkSig(o.Id, o.Asset0, o.Asset1, o.Amount0, o.Amount1, o.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
+            const splitSignature = ethers.utils.splitSignature(offer.Signature);
+            const ow = await ftSwap.checkSig(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             setOwner(ow);
 
-            const p = await ftSwap.partNullified(ow, o.Id);
+            const p = await ftSwap.partNullified(ow, offer.Id);
             setPartAvaliable(BigNumber.from(10).pow(BigNumber.from(18)).sub(p).toString());            
 
-            const token1 = new ethers.Contract(o.Asset0, afERC20.abi, signer);
+            const token1 = new ethers.Contract(offer.Asset0, afERC20.abi, signer);
             setT1Decimals(await token1.decimals());
-            const token2 = new ethers.Contract(o.Asset1, afERC20.abi, signer);
+            const token2 = new ethers.Contract(offer.Asset1, afERC20.abi, signer);
             setT2Decimals(await token2.decimals());  
         }) ();
-    }, [offerCid, provider]);
+    }, [offer, provider]);
     
     const onTakeOffer = async () => {
         const signer = provider.getSigner();
@@ -71,8 +59,6 @@ console.log("Offer from IPFS: ", o);
         // Execute swap
         const splitSignature = ethers.utils.splitSignature(offer.Signature);
         try {
-console.log("part", part);
-console.log(BigNumber.from(part).mul(BigNumber.from(10).pow(BigNumber.from(16))).toString());
             const tx = await ftSwap.swap(BigNumber.from(part).mul(BigNumber.from(10).pow(BigNumber.from(16))), offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             const r = await tx.wait();
             window.alert('Completed. Block hash: ' + r.blockHash);        
@@ -111,17 +97,17 @@ console.log(BigNumber.from(part).mul(BigNumber.from(10).pow(BigNumber.from(16)))
         <Accordion>
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                {offer && uint256ToDecimal(offer.Amount0, t1Decimals)} for {offer && uint256ToDecimal(offer.Amount1, t2Decimals)} @
-                {offer && offer.Amount1 / offer.Amount0} (1 / {offer && offer.Amount0 / offer.Amount1})
+                {uint256ToDecimal(offer.Amount0, t1Decimals)} for {uint256ToDecimal(offer.Amount1, t2Decimals)} @
+                {offer.Amount1 / offer.Amount0} (1 / { offer.Amount0 / offer.Amount1})
             </Accordion.Header>
             <Accordion.Body>
-                Id: { offer && offer.Id } <br/>
-                Amount: {offer && uint256ToDecimal(offer.Amount0, t1Decimals)} ({offer && uint256ToDecimal(offer.Amount0, t1Decimals) * part / 100.0})<br/>
-                for: {offer && uint256ToDecimal(offer.Amount1, t2Decimals)} ({offer && uint256ToDecimal(offer.Amount1, t1Decimals) * part / 100.0})<br/>
-                Price: {offer && offer.Amount1 / offer.Amount0} <br/>
-                Price: 1 / {offer && offer.Amount0 / offer.Amount1} <br/>
-                Expires: {offer && new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
-                Part available: { offer && uint256ToDecimal(partAvaliable, 18) } <br/>
+                Id: { offer.Id } <br/>
+                Amount: { uint256ToDecimal(offer.Amount0, t1Decimals)} ({ uint256ToDecimal(offer.Amount0, t1Decimals) * part / 100.0})<br/>
+                for: { uint256ToDecimal(offer.Amount1, t2Decimals)} ({ uint256ToDecimal(offer.Amount1, t1Decimals) * part / 100.0})<br/>
+                Price: { offer.Amount1 / offer.Amount0} <br/>
+                Price: 1 / { offer.Amount0 / offer.Amount1} <br/>
+                Expires: { new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
+                Part available: { uint256ToDecimal(partAvaliable, 18) } <br/>
                 { owner !== signerAddress &&
                     <InputGroup>
                         <Button variant="primary" onClick={onTakeOffer} >

@@ -15,18 +15,17 @@ function OrderBook({t1Address, t2Address, provider}) {
     const dagToOfferList = async (dagCid) => {
         if ("" === dagCid) return new Promise((resolve, _) => { return resolve([])}); // Resolves to []
         else {
-console.log("Waiting for tail: ", dagCid);
             const { value: dag } = await window.ipfs.dag.get(CID.parse(dagCid));
-console.log("Got dag: ", dag);
-            return [dag.Offer.toString(), ... await dagToOfferList(dag.Next.toString()) ];
+            return [(await window.ipfs.dag.get(CID.parse(dag.Offer.toString()))).value, ...await dagToOfferList(dag.Next.toString()) ];
         }
     }
 
     const updateHandler = async cidMsg => {
         const cid = String.fromCharCode(...cidMsg.data);
 console.log("New root CID: ", cid);
-        if (cid != rootCid) {
+        if (cid !== rootCid) {
             const l = await dagToOfferList(cid);
+            //const sl = new Map([...l].sort());
 console.log("Offer list: ", l);
             setOfferList(l);
             setRootCid(cid);
@@ -55,7 +54,7 @@ console.log("Subscribing to topic: ", t);
         <br/>
         <Table striped bordered hover>
             <tbody>
-                {offerList.map((offer) => <tr key={offer}><Offer offerCid={offer} provider={provider} /></tr>)}
+                {offerList.map((offer) => <tr key={offer.Id}><Offer offer={offer} provider={provider} /></tr>)}
             </tbody>
         </Table>
     </>);
