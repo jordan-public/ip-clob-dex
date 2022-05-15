@@ -19,18 +19,14 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
+  const [owner, trader] = await hre.ethers.getSigners();
+
   // We get the contract to deploy
   const FTSwap = await hre.ethers.getContractFactory("FTSwap");
   const ftSwap = await FTSwap.deploy();
   await ftSwap.deployed();
   fs.writeFile("deployed/FTSwap" + ftSwap.deployTransaction.chainId + '.json', JSON.stringify(ftSwap, undefined, 2), (err) => { if (err) console.error(err) });
   console.log("FTSwap deployed to:", ftSwap.address);
-
-  const HouseNFT = await hre.ethers.getContractFactory("NFT");
-  const houseNFT = await HouseNFT.deploy("House", "HOUSE", "https://img.icons8.com/color/48/000000/cottage.png");
-  await houseNFT.deployed();
-  fs.writeFile("deployed/NFT" + houseNFT.deployTransaction.chainId + '.json', JSON.stringify(houseNFT, undefined, 2), (err) => { if (err) console.error(err) });
-  console.log("HouseNFT deployed to:", houseNFT.address);
 
   const T1 = await hre.ethers.getContractFactory("FT");
   const t1 = await T1.deploy("Token 1", "T1", "1000000000000000000000");
@@ -43,6 +39,9 @@ async function main() {
   await t2.deployed();
   fs.writeFile("deployed/Token2" + t2.deployTransaction.chainId + '.json', JSON.stringify(t2, undefined, 2), (err) => { if (err) console.error(err) });
   console.log("Token 2 deployed to:", t2.address);
+
+  await (await t1.connect(owner).transfer(trader.address, "500000000000000000000")).wait();
+  await (await t2.connect(owner).transfer(trader.address, "500000000000000000000")).wait();
 }
 
 // We recommend this pattern to be able to use async/await everywhere
