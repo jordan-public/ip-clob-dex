@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form, InputGroup, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
 import { CID } from 'multiformats/cid';
@@ -17,6 +17,7 @@ function Offer({offerCid, provider}) {
     const [t1Decimals, setT1Decimals] = React.useState(null);
     const [t2Decimals, setT2Decimals] = React.useState(null);
     const [partAvaliable, setPartAvaliable] = React.useState("0");
+    const [part, setPart] = React.useState(100);
     
     React.useEffect(() => {
         (async () => {
@@ -69,14 +70,21 @@ console.log("Offer from IPFS: ", o);
         // Execute swap
         const splitSignature = ethers.utils.splitSignature(offer.Signature);
         try {
-            const tx = await ftSwap.swap(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
-
+console.log("part", part);
+console.log(BigNumber.from(part).mul(BigNumber.from(10).pow(BigNumber.from(16))).toString());
+            const tx = await ftSwap.swap(BigNumber.from(part).mul(BigNumber.from(10).pow(BigNumber.from(16))), offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             const r = await tx.wait();
             window.alert('Completed. Block hash: ' + r.blockHash);        
         } catch(e) {
             console.log("Error: ", e);
             window.alert(e.message + "\n" + e.data.message);
         }
+
+        const p = await ftSwap.partNullified(owner, offer.Id);
+        const pa = BigNumber.from(10).pow(BigNumber.from(18)).sub(p);
+        setPartAvaliable(pa.toString());
+
+        setPart(parseInt(pa.div(BigNumber.from(10).pow(BigNumber.from(16))).toString()));            
     }
 
     const onCancelOffer = async () => {
@@ -93,21 +101,45 @@ console.log("Offer from IPFS: ", o);
         }
     }
 
+    const onChangePart = (e) => {
+        if (uint256ToDecimal(partAvaliable, 18) * 100.0 < e.target.value) setPart(parseInt(uint256ToDecimal(partAvaliable, 18) * 100.0));
+        else setPart(e.target.value);
+    }
+
     return (<td>
-        Id: { offer && offer.Id } <br/>
-        Amount: {offer && uint256ToDecimal(offer.Amount0, t1Decimals)} <br/>
-        for: {offer && uint256ToDecimal(offer.Amount1, t2Decimals)} <br/>
-        Price: {offer && offer.Amount1 / offer.Amount0} <br/>
-        Price: 1 / {offer && offer.Amount0 / offer.Amount1} <br/>
-        Expires: {offer && new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
-        Part available: { offer && uint256ToDecimal(partAvaliable, 18) } <br/>
-        { owner !== signerAddress && <Button variant="primary" onClick={onTakeOffer} >
-            Take
-        </Button> }
-        { owner === signerAddress && <Button variant="primary" onClick={onCancelOffer} >
-            Cancel
-        </Button> }
-    </td>);
+        <Accordion>
+            <Accordion.Item eventKey="0">
+            <Accordion.Header>
+                {offer && uint256ToDecimal(offer.Amount0, t1Decimals)} for {offer && uint256ToDecimal(offer.Amount1, t2Decimals)} @
+                {offer && offer.Amount1 / offer.Amount0} (1 / {offer && offer.Amount0 / offer.Amount1})
+            </Accordion.Header>
+            <Accordion.Body>
+                Id: { offer && offer.Id } <br/>
+                Amount: {offer && uint256ToDecimal(offer.Amount0, t1Decimals)} ({offer && uint256ToDecimal(offer.Amount0, t1Decimals) * part / 100.0})<br/>
+                for: {offer && uint256ToDecimal(offer.Amount1, t2Decimals)} ({offer && uint256ToDecimal(offer.Amount1, t1Decimals) * part / 100.0})<br/>
+                Price: {offer && offer.Amount1 / offer.Amount0} <br/>
+                Price: 1 / {offer && offer.Amount0 / offer.Amount1} <br/>
+                Expires: {offer && new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
+                Part available: { offer && uint256ToDecimal(partAvaliable, 18) } <br/>
+                { owner !== signerAddress &&
+                    <InputGroup>
+                        <Button variant="primary" onClick={onTakeOffer} >
+                            Take
+                        </Button>
+                        <InputGroup.Text>{part}</InputGroup.Text>
+                        <InputGroup.Text>%</InputGroup.Text>
+                        <Form.Range onChange={onChangePart} value={part} />
+                    </InputGroup>
+                }
+                { owner === signerAddress && 
+                    <Button variant="primary" onClick={onCancelOffer} >
+                        Cancel
+                    </Button>
+                }
+            </Accordion.Body>
+            </Accordion.Item>
+        </Accordion>
+        </td>);
 }
 
 export default Offer;
