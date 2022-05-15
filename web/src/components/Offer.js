@@ -86,6 +86,12 @@ function Offer({offer, provider}) {
             console.log("Error: ", e);
             window.alert(e.message);
         }
+
+        const p = await ftSwap.partNullified(owner, offer.Id);
+        const pa = BigNumber.from(10).pow(BigNumber.from(18)).sub(p);
+        setPartAvaliable(pa.toString());
+
+        setPart(parseInt(pa.div(BigNumber.from(10).pow(BigNumber.from(16))).toString()));            
     }
 
     const onChangePart = (e) => {

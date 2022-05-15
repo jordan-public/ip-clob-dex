@@ -6,6 +6,9 @@ import Offer from './Offer';
 import getOfferTableTopic from '../utils/getOfferTableTopic';
 import MakeOffer from './MakeOffer';
 import { CID } from 'multiformats/cid';
+import { BigNumber, ethers } from 'ethers';
+import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
+import dpFTSwap from '../@deployed/FTSwap31337.json';
 
 function OrderBook({t1Address, t2Address, provider}) {
     const [offerTopic, setOfferTopic] = React.useState("");
@@ -20,6 +23,13 @@ function OrderBook({t1Address, t2Address, provider}) {
         }
     }
 
+    const isValidOffer = async (offer) => {
+        const signer = provider.getSigner();
+        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const splitSignature = ethers.utils.splitSignature(offer.Signature);
+        return ftSwap.checkValidOffer(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);     
+    }
+
     const updateHandler = async cidMsg => {
         const cid = String.fromCharCode(...cidMsg.data);
 console.log("New root CID: ", cid);
@@ -27,7 +37,8 @@ console.log("New root CID: ", cid);
             if (rootCid !== "") await window.ipfs.pubsub.publish(offerTopic, rootCid);
         } else if (cid !== rootCid) {
             const l = await dagToOfferList(cid);
-            const sl = l.sort((o1, o2) => { return o1.Amount1 / o1.Amount0 - o2.Amount1 / o2.Amount0 });
+            const fl = l.filter(isValidOffer);
+            const sl = fl.sort((o1, o2) => { return o1.Amount1 / o1.Amount0 - o2.Amount1 / o2.Amount0 });
             setOfferList(sl);
             setRootCid(cid);
         }
