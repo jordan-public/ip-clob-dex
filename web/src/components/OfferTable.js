@@ -23,11 +23,11 @@ function OrderBook({t1Address, t2Address, provider}) {
     const updateHandler = async cidMsg => {
         const cid = String.fromCharCode(...cidMsg.data);
 console.log("New root CID: ", cid);
-        if (cid !== rootCid) {
+        if (cid === "rebroadcast") {
+            if (rootCid !== "") await window.ipfs.pubsub.publish(offerTopic, rootCid);
+        } else if (cid !== rootCid) {
             const l = await dagToOfferList(cid);
             const sl = l.sort((o1, o2) => { return o1.Amount1 / o1.Amount0 - o2.Amount1 / o2.Amount0 });
-console.log("Offer list: ", l);
-console.log("Offer sorted list: ", sl);
             setOfferList(sl);
             setRootCid(cid);
         }
@@ -43,6 +43,7 @@ console.log("Offer sorted list: ", sl);
 console.log("Subscribing to topic: ", t);
                 try { // May already be subscribed
                     await window.ipfs.pubsub.subscribe(t, updateHandler);
+                    await window.ipfs.pubsub.publish(t, "rebroadcast");
                 } catch(_) { 
                     console.log("Error: Already subscribed to topic: ", t);
                 }
