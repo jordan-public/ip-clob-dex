@@ -5,16 +5,32 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Offer from './Offer';
 import getOfferTableTopic from '../utils/getOfferTableTopic';
 import MakeOffer from './MakeOffer';
+import { CID } from 'multiformats/cid';
 
 function OrderBook({t1Address, t2Address, provider}) {
     const [offerTopic, setOfferTopic] = React.useState("");
     const [rootCid, setRootCid] = React.useState("");
+    const [offerList, setOfferList] = React.useState([]);
 
-    const updateHandler = cidMsg => {
+    const dagToOfferList = async (dagCid) => {
+        if ("" === dagCid) return new Promise((resolve, _) => { return resolve([])}); // Resolves to []
+        else {
+console.log("Waiting for tail: ", dagCid);
+            const { value: dag } = await window.ipfs.dag.get(CID.parse(dagCid));
+console.log("Got dag: ", dag);
+            return [dag.Offer.toString(), ... await dagToOfferList(dag.Next.toString()) ];
+        }
+    }
+
+    const updateHandler = async cidMsg => {
         const cid = String.fromCharCode(...cidMsg.data);
-        console.log("New root CID: ", cid);
-        setRootCid(cid);
-        //window.ipfs.dag.get();
+console.log("New root CID: ", cid);
+        if (cid != rootCid) {
+            const l = await dagToOfferList(cid);
+console.log("Offer list: ", l);
+            setOfferList(l);
+            setRootCid(cid);
+        }
     }
 
     React.useEffect(() => {
@@ -35,11 +51,11 @@ console.log("Subscribing to topic: ", t);
     }, [t1Address, t2Address, provider]);
     
     return (<>
-        <MakeOffer t1Address={t1Address} t2Address={t2Address} offerTopic={offerTopic} provider={provider}/>
+        <MakeOffer t1Address={t1Address} t2Address={t2Address} offerTopic={offerTopic} rootCid={rootCid} provider={provider}/>
         <br/>
         <Table striped bordered hover>
             <tbody>
-                <tr><Offer offerCid={rootCid} provider={provider} /></tr>
+                {offerList.map((offer) => <tr key={offer}><Offer offerCid={offer} provider={provider} /></tr>)}
             </tbody>
         </Table>
     </>);

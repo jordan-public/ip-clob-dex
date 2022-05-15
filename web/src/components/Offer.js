@@ -26,6 +26,7 @@ if (offerCid === null || offerCid === "") {
     console.log("Null offerCid - this will not happen when offer in a list");
     return;
 }
+console.log(offerCid.toString());
 console.log(CID.parse(offerCid));
             const { value: o } = await window.ipfs.dag.get(CID.parse(offerCid));
 console.log("Offer from IPFS: ", o);

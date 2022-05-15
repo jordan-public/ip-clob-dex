@@ -10,7 +10,7 @@ import dpFTSwap from '../@deployed/FTSwap31337.json';
 import random256hex from '../utils/random256hex';
 import decimalToUint256 from '../utils/decimalToUint256';
 
-function MakeOffer({t1Address, t2Address, offerTopic, provider}) {
+function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
     const [t1Amount, setT1Amount] = React.useState("");
     const [t2Amount, setT2Amount] = React.useState("");
     const [t1Decimals, setT1Decimals] = React.useState(null);
@@ -74,15 +74,13 @@ console.log("Offer: ", offer);
 console.log("Offer CID: ", offerCid, offerCid.toString());
         // Pin DAG
 // !!!ToDo
-        // Receive last root (move this to worker thread)
-        const lastRootCID = "TBD"; 
         // Combine
-        const newRootCid = await window.ipfs.dag.put({ Offer: offerCid, Next: lastRootCID});
-console.log("Updated CID", newRootCid, newRootCid.toString());
+        const newRootCid = await window.ipfs.dag.put({ Offer: offerCid, Next: rootCid});
+console.log("Updated root CID", newRootCid, newRootCid.toString());
         // Pin new root
 // !!!ToDo
         // Broadcast new root
-        await window.ipfs.pubsub.publish(offerTopic, offerCid.toString());
+        await window.ipfs.pubsub.publish(offerTopic, newRootCid.toString());
     }
 
     return (
