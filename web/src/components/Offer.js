@@ -98,14 +98,14 @@ function Offer({offer, provider}) {
             <Accordion.Item eventKey="0">
             <Accordion.Header>
                 {uint256ToDecimal(offer.Amount0, t1Decimals)} for {uint256ToDecimal(offer.Amount1, t2Decimals)} @
-                {offer.Amount1 / offer.Amount0} (1 / { offer.Amount0 / offer.Amount1})
+                {offer.Amount0 / offer.Amount1} (1 / { offer.Amount1 / offer.Amount0})
             </Accordion.Header>
             <Accordion.Body>
                 Id: { offer.Id } <br/>
                 Amount: { uint256ToDecimal(offer.Amount0, t1Decimals)} ({ uint256ToDecimal(offer.Amount0, t1Decimals) * part / 100.0})<br/>
-                for: { uint256ToDecimal(offer.Amount1, t2Decimals)} ({ uint256ToDecimal(offer.Amount1, t1Decimals) * part / 100.0})<br/>
-                Price: { offer.Amount1 / offer.Amount0} <br/>
-                Price: 1 / { offer.Amount0 / offer.Amount1} <br/>
+                for: { uint256ToDecimal(offer.Amount1, t2Decimals)} ({ uint256ToDecimal(offer.Amount1, t2Decimals) * part / 100.0})<br/>
+                Price: { offer.Amount0 / offer.Amount1} <br/>
+                Price: 1 / { offer.Amount1 / offer.Amount0} <br/>
                 Expires: { new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
                 Part available: { uint256ToDecimal(partAvaliable, 18) } <br/>
                 { owner !== signerAddress &&

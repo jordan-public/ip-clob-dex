@@ -25,9 +25,10 @@ function OrderBook({t1Address, t2Address, provider}) {
 console.log("New root CID: ", cid);
         if (cid !== rootCid) {
             const l = await dagToOfferList(cid);
-            //const sl = new Map([...l].sort());
+            const sl = l.sort((o1, o2) => { return o1.Amount1 / o1.Amount0 - o2.Amount1 / o2.Amount0 });
 console.log("Offer list: ", l);
-            setOfferList(l);
+console.log("Offer sorted list: ", sl);
+            setOfferList(sl);
             setRootCid(cid);
         }
     }
