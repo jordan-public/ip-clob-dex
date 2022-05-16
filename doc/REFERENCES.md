@@ -1,5 +1,6 @@
 Signatures: Verifying Messages in Solidity
 https://blog.ricmoo.com/verifying-messages-in-solidity-50a94f82b2ca
+https://programtheblockchain.com/posts/2018/02/17/signing-and-verifying-messages-in-ethereum/
 
 To fix CORS issue:
 https://stackoverflow.com/questions/67181658/create-react-app-web-server-respond-with-cors-headers
