@@ -19,7 +19,7 @@ function OrderBook({t1Address, t2Address, provider}) {
         if ("" === dagCid) return new Promise((resolve, _) => { return resolve([])}); // Resolves to []
         else {
             const { value: dag } = await window.ipfs.dag.get(CID.parse(dagCid));
-            return [(await window.ipfs.dag.get(CID.parse(dag.Offer.toString()))).value, ...await dagToOfferList(dag.Next.toString()) ];
+            return [{ CID: dag.Offer.toString(), ...(await window.ipfs.dag.get(CID.parse(dag.Offer.toString()))).value}, ...await dagToOfferList(dag.Next.toString()) ];
         }
     }
 

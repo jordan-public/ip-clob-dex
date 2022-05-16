@@ -107,6 +107,7 @@ function Offer({offer, provider}) {
                 {offer.Amount0 / offer.Amount1} (1 / { offer.Amount1 / offer.Amount0})
             </Accordion.Header>
             <Accordion.Body>
+                CID: { offer.CID } <br/>
                 Id: { offer.Id } <br/>
                 Amount: { uint256ToDecimal(offer.Amount0, t1Decimals)} ({ uint256ToDecimal(offer.Amount0, t1Decimals) * part / 100.0})<br/>
                 for: { uint256ToDecimal(offer.Amount1, t2Decimals)} ({ uint256ToDecimal(offer.Amount1, t2Decimals) * part / 100.0})<br/>
