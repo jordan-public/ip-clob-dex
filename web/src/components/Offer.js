@@ -3,7 +3,6 @@ import React from 'react';
 import { Button, Form, InputGroup, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
-import { CID } from 'multiformats/cid';
 import afERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';

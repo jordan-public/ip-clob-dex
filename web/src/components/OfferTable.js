@@ -6,7 +6,7 @@ import Offer from './Offer';
 import getOfferTableTopic from '../utils/getOfferTableTopic';
 import MakeOffer from './MakeOffer';
 import { CID } from 'multiformats/cid';
-import { BigNumber, ethers } from 'ethers';
+import { ethers } from 'ethers';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
 import dpFTSwap from '../@deployed/FTSwap31337.json';
 

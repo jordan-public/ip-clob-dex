@@ -83,19 +83,4 @@ contract FTSwap is IFTSwap {
     function cancelOffer(uint256 offerId) external {
         nullify(msg.sender, offerId, 10**18);
     }
-
-    struct testStruct {
-        uint256 a;
-        uint256 b;
-    }
-
-    function test1(bytes memory data) pure private returns(testStruct memory) {
-        (testStruct memory ts2) = abi.decode(data, (testStruct));
-        return ts2;
-    }
-
-    function test(testStruct memory ts1) pure external returns(testStruct memory) {
-        (bytes memory data) = abi.encode(ts1);
-        return test1(data);
-    }
 }
