@@ -4,6 +4,7 @@ import { Form, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { ethers } from 'ethers';
 import OrderBook from './OrderBook';
+import FlashSwap from './FlashSwap';
 import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 
 function Body({provider}) {
@@ -52,6 +53,7 @@ function Body({provider}) {
             </Accordion.Item>
         </Accordion>
         <OrderBook t1Address={t1Address} t2Address={t2Address} provider={provider} />
+        <FlashSwap provider={provider} />
     </>);
 }
 

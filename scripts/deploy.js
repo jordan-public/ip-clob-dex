@@ -28,6 +28,13 @@ async function main() {
   fs.writeFile("deployed/FTSwap" + ftSwap.deployTransaction.chainId + '.json', JSON.stringify(ftSwap, undefined, 2), (err) => { if (err) console.error(err) });
   console.log("FTSwap deployed to:", ftSwap.address);
 
+  // We get the contract to deploy
+  const FlashMatch = await hre.ethers.getContractFactory("FlashMatch");
+  const flashMatch = await FlashMatch.deploy(ftSwap.address);
+  await flashMatch.deployed();
+  fs.writeFile("deployed/FlashMatch" + flashMatch.deployTransaction.chainId + '.json', JSON.stringify(flashMatch, undefined, 2), (err) => { if (err) console.error(err) });
+  console.log("FTSwap deployed to:", flashMatch.address);
+
   const T1 = await hre.ethers.getContractFactory("FT");
   const t1 = await T1.deploy("Token 1", "T1", "1000000000000000000000");
   await t1.deployed();
