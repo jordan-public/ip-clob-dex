@@ -3,9 +3,7 @@ import React from 'react';
 import { Button, Form, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
-import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json';
-import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
-import dpFTSwap from '../@deployed/FTSwap31337.json';
+import afERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import afFlashMatch from '../@artifacts/contracts/FlashMatch.sol/FlashMatch.json';
 import dpFlashMatch from '../@deployed/FlashMatch31337.json';
 import { CID } from 'multiformats/cid';
@@ -33,23 +31,8 @@ console.log("Offer2: ", offer2);
         const signerAddress = await signer.getAddress();
 
         // Record balance of base token (offer1.Asset0)
-        const baseToken = new ethers.Contract(offer1.Asset0, afIERC20.abi, signer);
+        const baseToken = new ethers.Contract(offer1.Asset0, afERC20.abi, signer);
         const startBaseBalance = await baseToken.balanceOf(signerAddress);
-
-        // Authorize Swap to spend base token
-        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
-        const allowance = await baseToken.allowance(signerAddress, ftSwap.address);
-        if (allowance.lt(BigNumber.from('0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'))) {
-            try {
-                const tx = await baseToken.approve(ftSwap.address, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
-
-                const r = await tx.wait();
-                window.alert('Completed. Block hash: ' + r.blockHash);        
-            } catch(e) {
-                console.log("Error: ", e);
-                window.alert(e.message + "\n" + e.data.message);
-            }
-        }
 
         // Flash Swap
         const ftFlashMatch = new ethers.Contract(dpFlashMatch.address, afFlashMatch.abi, signer);
@@ -84,9 +67,10 @@ console.log("Offer2: ", offer2);
             const r = await tx.wait();
             const endBaseBalance = await baseToken.balanceOf(signerAddress);
             const baseTokenDecimals = await baseToken.decimals();
-            const profitDecimal = uint256ToDecimal(endBaseBalance, baseTokenDecimals) - uint256ToDecimal(startBaseBalance, baseTokenDecimals);
-            console.log("Profit: ", profitDecimal);
-            window.alert('Completed. Block hash: ' + r.blockHash + '\nProfit: ' + profitDecimal);        
+            const baseTokenSymbol = await baseToken.symbol();
+            const profitDecimal = uint256ToDecimal(endBaseBalance - startBaseBalance, baseTokenDecimals);
+            console.log("Profit: ", profitDecimal, baseTokenSymbol);
+            window.alert('Completed. Block hash: ' + r.blockHash + '\nProfit: ' + profitDecimal + baseTokenSymbol);        
         } catch(e) {
             console.log("Error: ", e);
             window.alert(e.message + "\n" + e.data.message);

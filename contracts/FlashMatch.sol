@@ -13,6 +13,14 @@ contract FlashMatch is IFlashCallee {
         ftSwap = IFTSwap(_swap);
     }
 
+    function safeTransferFrom(address token, address from, address to, uint256 value) private {
+        // bytes4(keccak256(bytes('transferFrom(address,address,uint256)')));
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0x23b872dd, from, to, value));
+        require(success && (data.length == 0 || abi.decode(data, (bool))), "IPDEX: Transfer failed");
+    }
+
+
+
     function flashCall(bytes calldata flashData) external {
         assert(msg.sender == address(ftSwap)); // Must call the given FTSwap
         (swapRequest memory req) = abi.decode(flashData, (swapRequest));
@@ -28,33 +36,25 @@ contract FlashMatch is IFlashCallee {
         require(req1.token1 == req2.token0 && req1.token0 == req2.token1, "IPDEX-FS: Request mismatch");
         if (req1.amount1 >= req2.amount0) { // Sufficient amount to borrow - scale req1
             req2.part = 10**18; // 1 (all)
-            req1.part = req2.amount0 * 10**18 / req1.amount1;
-            if (req2.amount0 * 10**18 % req1.amount1 > 0) req1.part += 1; // Round up
-            require(req1.part <= 10**18, "IPDEX-FS: Rounding problem 1");
+            req1.part = req2.amount0 * 10**18 / req1.amount1; // Round down
             (bytes memory flashData) = abi.encode(req2);
-console.log(IERC20(req1.token0).balanceOf(address(this)));
-console.log(IERC20(req1.token1).balanceOf(address(this)));
             IERC20(req1.token1).approve(address(ftSwap), type(uint256).max); // Refine this!
             ftSwap.swap(req1, flashData);
-            require(req2.amount1 >= req1.amount0 * req1.part / 10**18, "IPDEX-FS: Unprofitable 1");
-            profit = req2.amount1 - req1.amount0 * req1.part / 10**18; // Does not overflow
-console.log(profit);
-console.log(IERC20(req1.token0).balanceOf(address(this)));
-console.log(IERC20(req1.token1).balanceOf(address(this)));
-            IERC20(req1.token0).transfer(msg.sender, profit);
+            require(req2.amount1 <= req1.amount0 * req1.part / 10**18, "IPDEX-FS: Unprofitable 1");
+            profit = req1.amount0 * req1.part / 10**18 - req2.amount1; // Does not overflow
             // Rounding dust - no need to spend gas: IERC20(req1.token1).transfer(msg.sender, IERC20(req1.token1).balanceOf(address(this)));
         } else { // req1.amount1 < req2.amount0 - borrow everything scale req2
             req1.part = 10**18; // 1 (all)
             req2.part = req1.amount1 * 10**18 / req2.amount0;
             if (req1.amount1 * 10**18 % req2.amount0 > 0) req2.part += 1; // Round up
-            require(req2.part <= 10**18, "IPDEX-FS: Rounding problem 2");
+            // Not possible: require(req2.part <= 10**18, "IPDEX-FS: Rounding problem 2");
             IERC20(req1.token1).approve(address(ftSwap), type(uint256).max); // Refine this!
             bytes memory flashData = abi.encode(req2);
             ftSwap.swap(req1, flashData);
-            require(req2.amount1 * req2.part / 10**18 >= req1.amount0, "IPDEX-FS: Unprofitable 2");
-            profit = req2.amount1 * req2.part / 10**18 - req1.amount0; // Does not overflow
-            IERC20(req1.token0).transfer(msg.sender, profit);
+            require(req2.amount1 * req2.part / 10**18 <= req1.amount0, "IPDEX-FS: Unprofitable 2");
+            profit = req1.amount0 - req2.amount1 * req2.part / 10**18; // Does not overflow
             // Rounding dust - no need to spend gas: IERC20(req1.token1).transfer(msg.sender, IERC20(req1.token1).balanceOf(address(this)));
         }
+        safeTransferFrom(req1.token0, address(this), msg.sender, profit);
     }
 }
