@@ -1,0 +1,1 @@
+## [Hackathon Public Link - IPDEX - InterPlanetary Decentralized EXchange](https://showcase.ethglobal.com/hackmoney2022/ipdex-498o0)
