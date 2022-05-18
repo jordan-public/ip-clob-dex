@@ -4,6 +4,8 @@ import { Button, Form, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
 import afERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
+import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
+import dpFTSwap from '../@deployed/FTSwap31337.json';
 import afFlashMatch from '../@artifacts/contracts/FlashMatch.sol/FlashMatch.json';
 import dpFlashMatch from '../@deployed/FlashMatch31337.json';
 import { CID } from 'multiformats/cid';
@@ -34,6 +36,18 @@ console.log("Offer2: ", offer2);
         const baseToken = new ethers.Contract(offer1.Asset0, afERC20.abi, signer);
         const startBaseBalance = await baseToken.balanceOf(signerAddress);
 
+        // Check available unexecuted part for each offer and populate offerX.part with it
+        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const splitSignature1 = ethers.utils.splitSignature(offer1.Signature);
+        const splitSignature2 = ethers.utils.splitSignature(offer2.Signature);
+        const owner1 = await ftSwap.checkSig(offer1.Id, offer1.Asset0, offer1.Asset1, offer1.Amount0, offer1.Amount1, offer1.Expiration, splitSignature1.v, splitSignature1.r, splitSignature1.s);
+        const owner2 = await ftSwap.checkSig(offer2.Id, offer2.Asset0, offer2.Asset1, offer2.Amount0, offer2.Amount1, offer2.Expiration, splitSignature2.v, splitSignature2.r, splitSignature2.s);
+        const pn1 = await ftSwap.partNullified(owner1, offer1.Id);
+        const pn2 = await ftSwap.partNullified(owner2, offer2.Id);
+        const available1 = BigNumber.from(10).pow(BigNumber.from(18)).sub(pn1);
+        const available2 = BigNumber.from(10).pow(BigNumber.from(18)).sub(pn2);
+console.log("Part available 1: ", available1.toString());
+console.log("Part available 2: ", available2.toString());
         // Flash Swap
         const ftFlashMatch = new ethers.Contract(dpFlashMatch.address, afFlashMatch.abi, signer);
         try {
@@ -41,7 +55,7 @@ console.log("Offer2: ", offer2);
             const splitSignature2 = ethers.utils.splitSignature(offer2.Signature);
             const tx = await ftFlashMatch.flashMatch(
                 {
-                    part: 0,
+                    part: available1,
                     offerId: offer1.Id,
                     token0: offer1.Asset0,
                     token1: offer1.Asset1, 
@@ -53,7 +67,7 @@ console.log("Offer2: ", offer2);
                     s: splitSignature1.s
                 },
                 {
-                    part: 0,
+                    part: available2,
                     offerId: offer2.Id,
                     token0: offer2.Asset0,
                     token1: offer2.Asset1, 
