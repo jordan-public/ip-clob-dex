@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: BUSL-1.1
-import { ethers } from 'ethers';
 import BigNumber from 'bignumber.js';
 
 export default function uint256ToDecimal(u, decimals) {

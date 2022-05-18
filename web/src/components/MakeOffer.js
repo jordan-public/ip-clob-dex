@@ -11,10 +11,12 @@ import random256hex from '../utils/random256hex';
 import decimalToUint256 from '../utils/decimalToUint256';
 
 function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
-    const [t1Amount, setT1Amount] = React.useState("");
-    const [t2Amount, setT2Amount] = React.useState("");
     const [t1Decimals, setT1Decimals] = React.useState(null);
     const [t2Decimals, setT2Decimals] = React.useState(null);
+    const [t1Symbol, setT1Symbol] = React.useState("");
+    const [t2Symbol, setT2Symbol] = React.useState("");
+    const [t1Amount, setT1Amount] = React.useState("");
+    const [t2Amount, setT2Amount] = React.useState("");
     const [expiration, setExpiration] = React.useState(60);
 
     React.useEffect(() => {
@@ -22,8 +24,10 @@ function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
             const signer = provider.getSigner();
             const token1 = new ethers.Contract(t1Address, afERC20.abi, signer);
             setT1Decimals(await token1.decimals());
+            setT1Symbol(await token1.symbol());
             const token2 = new ethers.Contract(t2Address, afERC20.abi, signer);
             setT2Decimals(await token2.decimals());  
+            setT2Symbol(await token2.symbol());
         }) ();
     }, [t1Address, t2Address, offerTopic, provider]);
 
@@ -55,12 +59,11 @@ function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
                 window.alert('Completed. Block hash: ' + r.blockHash);        
             } catch(e) {
                 console.log("Error: ", e);
-                window.alert(e.message);
+                window.alert(e.message + "\n" + e.data.message);
             }
         }
 
         const expirationTime = Math.floor(expiration*60 + (new Date().getTime() / 1000));
-console.log("Expiration: ", new Date(expirationTime * 1000).toString());
         const offerHash = await ftSwap.offerHash(offerId, t1Address, t2Address, t1Amount, t2Amount, expirationTime);
         const signature = await signer.signMessage(ethers.utils.arrayify(offerHash));
         const splitSignature = ethers.utils.splitSignature(signature);
@@ -90,7 +93,7 @@ console.log("Updated root CID", newRootCid, newRootCid.toString());
             <Accordion.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="formT1">
-                        <Form.Label>Token1 amount</Form.Label>
+                        <Form.Label>I offer to pay {t1Symbol} in the amount of:</Form.Label>
                         <Form.Control onChange={onT1AmountChange} />
                         <Form.Text className="text-muted">
                         Enter the amount of the first token.
@@ -98,7 +101,7 @@ console.log("Updated root CID", newRootCid, newRootCid.toString());
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formT2">
-                        <Form.Label>Token2 amount</Form.Label>
+                        <Form.Label>for the following amount of {t2Symbol}:</Form.Label>
                         <Form.Control  onChange={onT2AmountChange} />
                         <Form.Text className="text-muted">
                         Enter the amount of the second Token.

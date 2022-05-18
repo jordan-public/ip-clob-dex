@@ -33,7 +33,7 @@ async function main() {
   const flashMatch = await FlashMatch.deploy(ftSwap.address);
   await flashMatch.deployed();
   fs.writeFile("deployed/FlashMatch" + flashMatch.deployTransaction.chainId + '.json', JSON.stringify(flashMatch, undefined, 2), (err) => { if (err) console.error(err) });
-  console.log("FTSwap deployed to:", flashMatch.address);
+  console.log("FlashMatch deployed to:", flashMatch.address);
 
   const T1 = await hre.ethers.getContractFactory("FT");
   const t1 = await T1.deploy("Token 1", "T1", "1000000000000000000000");

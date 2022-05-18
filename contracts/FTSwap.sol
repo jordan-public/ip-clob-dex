@@ -21,9 +21,17 @@ contract FTSwap is IFTSwap {
     }
 
     function safeTransferFrom(address token, address from, address to, uint256 value) private {
+console.log("xfering");
+console.log(token);
+console.log(from);
+console.log(to);
+console.log(value);
+console.log(IERC20(token).allowance(from, address(this)));
+console.log(IERC20(token).balanceOf(from));
         // bytes4(keccak256(bytes('transferFrom(address,address,uint256)')));
         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0x23b872dd, from, to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))), "IPDEX: Transfer failed");
+console.log("xferred");
     }
 
     function offerHash(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration) public view returns (bytes32) {
@@ -48,7 +56,7 @@ contract FTSwap is IFTSwap {
         require(expiration >= block.timestamp, "IPDEX: Expired");
         address maker = checkSig(offerId, token0, token1, amount0, amount1, expiration, v, r, s);
         require(part <= 10**18, "IPDEX: Invalid part"); // Also prevents overflow
-        if (partNullified(maker, offerId) + part > 10**18) part -= partNullified(maker, offerId) + part - 10**18; // Optimistically execute as much as possible
+        if (partNullified(maker, offerId) + part > 10**18) part = 10**18 - partNullified(maker, offerId);
         { // Prevent stack overflow
         uint n = partNullified(maker, offerId) + part;
         nullify(maker, offerId, n);
@@ -69,15 +77,25 @@ contract FTSwap is IFTSwap {
     }
 
     function swap(swapRequest calldata req, bytes memory flashData) public returns (uint256 partExecuted) {
+console.log("swap");
+console.log(req.part);
+console.log(req.amount0);
         require(req.amount0 < type(uint256).max / 10**18 && req.amount1 < type(uint256).max / 10**18, "IPDEX: Overflow");
         require(req.expiration >= block.timestamp, "IPDEX: Expired");
         address maker = checkSig(req.offerId, req.token0, req.token1, req.amount0, req.amount1, req.expiration, req.v, req.r, req.s);
         require(req.part <= 10**18, "IPDEX: Invalid part"); // Also prevents overflow
-        if (partNullified(maker, req.offerId) + req.part > 10**18) partExecuted =  10**18 - partNullified(maker, req.offerId); // Optimistically execute as much as possible
+        if (partNullified(maker, req.offerId) + req.part > 10**18) partExecuted =  10**18 - partNullified(maker, req.offerId);
+        else partExecuted = req.part;
         nullify(maker, req.offerId, partNullified(maker, req.offerId) + partExecuted);
         safeTransferFrom(req.token0, maker, msg.sender, req.amount0 * partExecuted / 10**18); // Optimistically
+console.log(req.amount0 * partExecuted / 10**18);
         if (flashData.length > 0) IFlashCallee(msg.sender).flashCall(flashData);
+console.log("trying");
+console.log(req.amount1 * partExecuted / 10**18);
+console.log(req.token1);
+console.log(IERC20(req.token1).allowance(msg.sender, address(this)));
         safeTransferFrom(req.token1, msg.sender, maker, req.amount1 * partExecuted / 10**18);
+console.log(req.amount1 * partExecuted / 10**18);
     }
 
     function cancelOffer(uint256 offerId) external {

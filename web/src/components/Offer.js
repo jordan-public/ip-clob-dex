@@ -14,6 +14,8 @@ function Offer({offer, provider}) {
     const [signerAddress, setSignerAddress] = React.useState(null);
     const [t1Decimals, setT1Decimals] = React.useState(null);
     const [t2Decimals, setT2Decimals] = React.useState(null);
+    const [t1Symbol, setT1Symbol] = React.useState("");
+    const [t2Symbol, setT2Symbol] = React.useState("");
     const [partAvaliable, setPartAvaliable] = React.useState("0");
     const [part, setPart] = React.useState(100);
     
@@ -31,8 +33,10 @@ function Offer({offer, provider}) {
 
             const token1 = new ethers.Contract(offer.Asset0, afERC20.abi, signer);
             setT1Decimals(await token1.decimals());
+            setT1Symbol(await token1.symbol());
             const token2 = new ethers.Contract(offer.Asset1, afERC20.abi, signer);
             setT2Decimals(await token2.decimals());  
+            setT2Symbol(await token2.symbol());
         }) ();
     }, [offer, provider]);
     
@@ -51,7 +55,7 @@ function Offer({offer, provider}) {
                 window.alert('Completed. Block hash: ' + r.blockHash);        
             } catch(e) {
                 console.log("Error: ", e);
-                window.alert(e.message);
+                window.alert(e.message + "\n" + e.data.message);
             }
         }
 
@@ -83,7 +87,7 @@ function Offer({offer, provider}) {
             window.alert('Completed. Block hash: ' + r.blockHash);        
         } catch(e) {
             console.log("Error: ", e);
-            window.alert(e.message);
+            window.alert(e.message + "\n" + e.data.message);
         }
 
         const p = await ftSwap.partNullified(owner, offer.Id);
@@ -102,18 +106,20 @@ function Offer({offer, provider}) {
         <Accordion>
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                {uint256ToDecimal(offer.Amount0, t1Decimals)} for {uint256ToDecimal(offer.Amount1, t2Decimals)} @
-                {offer.Amount0 / offer.Amount1} (1 / { offer.Amount1 / offer.Amount0})
+                {uint256ToDecimal(offer.Amount1, t2Decimals)} @
+                {offer.Amount0 / offer.Amount1} (Inverse: {uint256ToDecimal(offer.Amount0, t1Decimals)} @ { offer.Amount1 / offer.Amount0})
             </Accordion.Header>
             <Accordion.Body>
                 CID: { offer.CID } <br/>
                 Id: { offer.Id } <br/>
-                Amount: { uint256ToDecimal(offer.Amount0, t1Decimals)} ({ uint256ToDecimal(offer.Amount0, t1Decimals) * part / 100.0})<br/>
-                for: { uint256ToDecimal(offer.Amount1, t2Decimals)} ({ uint256ToDecimal(offer.Amount1, t2Decimals) * part / 100.0})<br/>
-                Price: { offer.Amount0 / offer.Amount1} <br/>
-                Price: 1 / { offer.Amount1 / offer.Amount0} <br/>
+                { owner !== signerAddress && "I can get:"} { owner === signerAddress && "I pay:" } &nbsp;
+                    { uint256ToDecimal(offer.Amount0, t1Decimals) * part / 100.0} of {t1Symbol} &nbsp;
+                for: &nbsp;
+                    { uint256ToDecimal(offer.Amount1, t2Decimals) * part / 100.0} of {t2Symbol}<br/>
+                Price: { offer.Amount0 / offer.Amount1} {t2Symbol}/{t1Symbol} &nbsp;
+                = { offer.Amount1 / offer.Amount0}  {t1Symbol}/{t2Symbol}<br/>
                 Expires: { new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
-                Part available: { uint256ToDecimal(partAvaliable, 18) } <br/>
+                { owner === signerAddress && "This is the remaining " + uint256ToDecimal(partAvaliable, 16) + "% of my order." } <br/>
                 { owner !== signerAddress &&
                     <InputGroup>
                         <Button variant="primary" onClick={onTakeOffer} >

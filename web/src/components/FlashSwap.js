@@ -2,10 +2,14 @@
 import React from 'react';
 import { Button, Form, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
+import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json';
+import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
+import dpFTSwap from '../@deployed/FTSwap31337.json';
 import afFlashMatch from '../@artifacts/contracts/FlashMatch.sol/FlashMatch.json';
 import dpFlashMatch from '../@deployed/FlashMatch31337.json';
 import { CID } from 'multiformats/cid';
+import uint256ToDecimal from '../utils/uint256ToDecimal';
 
 function FlashSwap({provider}) {
     const [offer1Id, setOffer1Id] = React.useState("");
@@ -26,6 +30,28 @@ console.log("Offer1: ", offer1);
 console.log("Offer2: ", offer2);
 
         const signer = provider.getSigner();
+        const signerAddress = await signer.getAddress();
+
+        // Record balance of base token (offer1.Asset0)
+        const baseToken = new ethers.Contract(offer1.Asset0, afIERC20.abi, signer);
+        const startBaseBalance = await baseToken.balanceOf(signerAddress);
+
+        // Authorize Swap to spend base token
+        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const allowance = await baseToken.allowance(signerAddress, ftSwap.address);
+        if (allowance.lt(BigNumber.from('0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'))) {
+            try {
+                const tx = await baseToken.approve(ftSwap.address, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
+
+                const r = await tx.wait();
+                window.alert('Completed. Block hash: ' + r.blockHash);        
+            } catch(e) {
+                console.log("Error: ", e);
+                window.alert(e.message + "\n" + e.data.message);
+            }
+        }
+
+        // Flash Swap
         const ftFlashMatch = new ethers.Contract(dpFlashMatch.address, afFlashMatch.abi, signer);
         try {
             const splitSignature1 = ethers.utils.splitSignature(offer1.Signature);
@@ -56,10 +82,14 @@ console.log("Offer2: ", offer2);
                     s: splitSignature2.s
                 });
             const r = await tx.wait();
-            window.alert('Completed. Block hash: ' + r.blockHash);        
+            const endBaseBalance = await baseToken.balanceOf(signerAddress);
+            const baseTokenDecimals = await baseToken.decimals();
+            const profitDecimal = uint256ToDecimal(endBaseBalance, baseTokenDecimals) - uint256ToDecimal(startBaseBalance, baseTokenDecimals);
+            console.log("Profit: ", profitDecimal);
+            window.alert('Completed. Block hash: ' + r.blockHash + '\nProfit: ' + profitDecimal);        
         } catch(e) {
             console.log("Error: ", e);
-            window.alert(e.message);
+            window.alert(e.message + "\n" + e.data.message);
         }
         
     }
@@ -71,7 +101,7 @@ console.log("Offer2: ", offer2);
             <Accordion.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="formT1">
-                        <Form.Label>Offer1 Id</Form.Label>
+                        <Form.Label>Offer1 CID</Form.Label>
                         <Form.Control onChange={onOffer1Change} />
                         <Form.Text className="text-muted">
                         Enter the first order book entry.
@@ -79,7 +109,7 @@ console.log("Offer2: ", offer2);
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formT2">
-                        <Form.Label>Offer2 Id</Form.Label>
+                        <Form.Label>Offer2 CID</Form.Label>
                         <Form.Control  onChange={onOffer2Change} />
                         <Form.Text className="text-muted">
                         Enter the amount of the second Token.
