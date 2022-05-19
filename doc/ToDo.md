@@ -1,13 +1,13 @@
 walletconnect + coinbase wallet
-re-think rebroadcasting
 events for refresh of order book: swap and token contracts (for authorize)
-flash swaps
 implement fees
-refactor: rename FTSwap IPSwap
+
+re-think rebroadcasting
+
 pinning
 command line scripts (js)
 Uniswap flash swap
-Aave flash swap
+dYdX flash swap
 
 White paper, video:
 - AMM vs. OrderBook (pricing options and struct products illustrations)
@@ -18,9 +18,19 @@ White paper, video:
 - Who matches orders: Flash Swap
 
 - What are the Offer entries: paid signed rights to call a contract function.
+  They can even be moving targets based on oracles, 
+  or accept zk proofs to execute when verification passes, etc., 
+  but for the hackathon I stay with fixed limit orders. 
 - Out of order execution nonce -> nullifiers, also for partial execution
 - Partial execution notifications: contract events
 
 - Demo Make
 - Demo Take
 - Demo Flash Swap + opportunity notification
+
+
+To fix:
+- No events on Flash Swaps
+- Displaying completed (canceled orders) - remove (filter out)
+To fix - low priority:
+- Events delivered twice

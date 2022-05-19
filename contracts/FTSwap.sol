@@ -10,6 +10,8 @@ import "./IFTSwap.sol";
 contract FTSwap is IFTSwap {
     mapping (bytes32 => uint256) public nullifiers; // Amount of partial execution (0 (not recorded) - 10**18 (fully executed or canceled))
 
+    event Change(uint256 indexed offerId);
+
     function partNullified(address maker, uint256 offerId) public view returns (uint256) {
         return nullifiers[keccak256(abi.encodePacked(maker, offerId))];
     }
@@ -47,7 +49,8 @@ console.log("done");
         return expiration >= block.timestamp && partNullified(maker, offerId) < 10**18 && IERC20(token0).allowance(maker, address(this)) >= amount0;
     }
 
-    function swap(uint256 part, uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external returns (uint256) {
+    // Named "swapSimple" instead of overloading "swap" as ethers.js cannot find it due to a probable bug
+    function swapSimple(uint256 part, uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external returns (uint256) {
         require(amount0 < type(uint256).max / 10**18 && amount1 < type(uint256).max / 10**18, "IPDEX: Overflow");
         require(expiration >= block.timestamp, "IPDEX: Expired");
         address maker = checkSig(offerId, token0, token1, amount0, amount1, expiration, v, r, s);
@@ -65,6 +68,7 @@ console.log("done");
         uint a = amount1 * part / 10**18;
         safeTransferFrom(token1, msg.sender, maker, a);
         }
+        emit Change(offerId);
         return part; // Part that executed
     }
 
@@ -85,9 +89,11 @@ console.log("xfer1");
         if (flashData.length > 0) IFlashCallee(msg.sender).flashCall(flashData);
         safeTransferFrom(req.token1, msg.sender, maker, req.amount1 * partExecuted / 10**18);
 console.log("xfer2");
+        emit Change(req.offerId);
     }
 
     function cancelOffer(uint256 offerId) external {
         nullify(msg.sender, offerId, 10**18);
+        emit Change(offerId);
     }
 }

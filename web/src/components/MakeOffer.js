@@ -59,7 +59,8 @@ function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
                 window.alert('Completed. Block hash: ' + r.blockHash);        
             } catch(e) {
                 console.log("Error: ", e);
-                window.alert(e.message + "\n" + e.data.message);
+                window.alert(e.message + "\n" + (e.data?e.data.message:""));
+                return;
             }
         }
 

@@ -29,7 +29,8 @@ interface IFTSwap {
 
     function checkValidOffer(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external view returns (bool);
 
-    function swap(uint256 part, uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external returns (uint256);
+    // Named "swapSimple" instead of overloading "swap" as ethers.js cannot find it due to a probable bug
+    function swapSimple(uint256 part, uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) external returns (uint256);
 
     function swap(swapRequest calldata req) external returns (uint256 partExecuted);
 

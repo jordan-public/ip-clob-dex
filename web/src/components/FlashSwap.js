@@ -87,7 +87,7 @@ console.log("Part available 2: ", available2.toString());
             window.alert('Completed. Block hash: ' + r.blockHash + '\nProfit: ' + profitDecimal + baseTokenSymbol);        
         } catch(e) {
             console.log("Error: ", e);
-            window.alert(e.message + "\n" + e.data.message);
+            window.alert(e.message + "\n" + (e.data?e.data.message:""));
         }
         
     }
