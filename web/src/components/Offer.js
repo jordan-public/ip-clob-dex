@@ -74,7 +74,6 @@ console.log("Subscribed to event Change", "Offer: ", offer);
         // Execute swap
         const splitSignature = ethers.utils.splitSignature(offer.Signature);
         try {
-console.log(ftSwap);
             const tx = await ftSwap.swapSimple(BigNumber.from(part).mul(BigNumber.from(10).pow(BigNumber.from(16))), offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             const r = await tx.wait();
             window.alert('Completed. Block hash: ' + r.blockHash);        
