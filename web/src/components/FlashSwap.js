@@ -25,9 +25,7 @@ function FlashSwap({provider}) {
 
     const onExecute = async () => {
         const offer1 = (await window.ipfs.dag.get(CID.parse(offer1Id))).value;
-console.log("Offer1: ", offer1);
         const offer2 = (await window.ipfs.dag.get(CID.parse(offer2Id))).value;
-console.log("Offer2: ", offer2);
 
         const signer = provider.getSigner();
         const signerAddress = await signer.getAddress();
@@ -46,8 +44,12 @@ console.log("Offer2: ", offer2);
         const pn2 = await ftSwap.partNullified(owner2, offer2.Id);
         const available1 = BigNumber.from(10).pow(BigNumber.from(18)).sub(pn1);
         const available2 = BigNumber.from(10).pow(BigNumber.from(18)).sub(pn2);
-console.log("Part available 1: ", available1.toString());
-console.log("Part available 2: ", available2.toString());
+
+        if (available1.eq(BigNumber.from(0)) || available1.eq(BigNumber.from(0))) {
+            window.alert("No liquidity availabe.");
+            return;
+        }
+
         // Flash Swap
         const ftFlashMatch = new ethers.Contract(dpFlashMatch.address, afFlashMatch.abi, signer);
         try {
