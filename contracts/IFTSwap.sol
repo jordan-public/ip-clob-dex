@@ -19,6 +19,12 @@ struct swapRequest {
 
 // IPDEX (Inter Planetary DEcentralized Exchange) Fungible Token Swap
 interface IFTSwap {
+    function owner() external view returns(address);
+    
+    function makerFee() external view returns(uint256);
+    
+    function takerFee() external view returns(uint256);
+    
     function nullifiers(bytes32 hash) external view returns(uint256);
     
     function partNullified(address maker, uint256 offerId) external view returns (uint256);

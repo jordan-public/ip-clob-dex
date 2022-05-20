@@ -8,9 +8,35 @@ import "./IFTSwap.sol";
 
 // IPDEX (Inter Planetary DEcentralized Exchange) Fungible Token Swap
 contract FTSwap is IFTSwap {
+    address public owner;
+    uint256 public makerFee = 10**14; // 0.01% initially
+    uint256 public takerFee = 10**15; // 0.1% initially
     mapping (bytes32 => uint256) public nullifiers; // Amount of partial execution (0 (not recorded) - 10**18 (fully executed or canceled))
 
     event Change(uint256 indexed offerId);
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "IPDEX: Unauthorized");
+        _;
+    }
+
+    function setOwner(address newOwner) external onlyOwner {
+        owner = newOwner; 
+    }
+
+    function setMakerFee(uint256 newMakerFee) external onlyOwner {
+        require(newMakerFee<10**16, "IPDEX: Abusive maker fee"); // 1%
+        makerFee = newMakerFee; 
+    }
+
+    function setTakerFee(uint256 newTakerFee) external onlyOwner {
+        require(newTakerFee<10**16, "IPDEX: Abusive taker fee"); // 1%
+        takerFee = newTakerFee; 
+    }
 
     function partNullified(address maker, uint256 offerId) public view returns (uint256) {
         return nullifiers[keccak256(abi.encodePacked(maker, offerId))];
@@ -63,10 +89,14 @@ console.log("done");
         { // Prevent stack overflow
         uint a = amount0 * part / 10**18;
         safeTransferFrom(token0, maker, msg.sender, a);
+        a = a * makerFee  / 10**18;
+        safeTransferFrom(token0, maker, address(owner), a);
         }
         { // Prevent stack overflow
         uint a = amount1 * part / 10**18;
         safeTransferFrom(token1, msg.sender, maker, a);
+        a = a * takerFee  / 10**18;
+        safeTransferFrom(token1, msg.sender, address(owner), a);
         }
         emit Change(offerId);
         return part; // Part that executed
@@ -76,14 +106,18 @@ console.log("done");
         require(req.amount0 < type(uint256).max / 10**18 && req.amount1 < type(uint256).max / 10**18, "IPDEX: Overflow");
         require(req.expiration >= block.timestamp, "IPDEX: Expired");
         address maker = checkSig(req.offerId, req.token0, req.token1, req.amount0, req.amount1, req.expiration, req.v, req.r, req.s);
+console.log("part");
+console.log(req.part);
         require(req.part <= 10**18, "IPDEX: Invalid part"); // Also prevents overflow
         if (partNullified(maker, req.offerId) + req.part > 10**18) partExecuted =  10**18 - partNullified(maker, req.offerId);
         else partExecuted = req.part;
         nullify(maker, req.offerId, partNullified(maker, req.offerId) + partExecuted);
 console.log("xfer1");
         safeTransferFrom(req.token0, maker, msg.sender, req.amount0 * partExecuted / 10**18); // Optimistically
+        safeTransferFrom(req.token0, maker, address(owner), (req.amount0 * partExecuted / 10**18) * makerFee / 10**18);
         if (flashData.length > 0) IFlashCallee(msg.sender).flashCall(flashData);
         safeTransferFrom(req.token1, msg.sender, maker, req.amount1 * partExecuted / 10**18);
+        safeTransferFrom(req.token1, msg.sender, address(owner), (req.amount1 * partExecuted / 10**18) * takerFee / 10**18);
 console.log("xfer2");
         emit Change(req.offerId);
     }

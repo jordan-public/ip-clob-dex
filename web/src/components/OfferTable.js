@@ -33,7 +33,10 @@ function OrderBook({t1Address, t2Address, provider}) {
         const cid = String.fromCharCode(...cidMsg.data);
 console.log("New root CID: ", cid, "old: ", rootCidRef.current);
         if (cid === "rebroadcast") {
-            if (rootCidRef.current !== "empty") await window.ipfs.pubsub.publish(offerTopic, rootCidRef.current);
+            if (rootCidRef.current !== "empty") {
+console.log("Broadcasting: ", rootCidRef.current, "on topic ", offerTopic);
+                await window.ipfs.pubsub.publish(offerTopic, rootCidRef.current);
+            }
         } else if (cid !== rootCidRef.current) {
 console.log("Processing new cid: ", cid)
             const l = await dagToOfferList(cid);
@@ -66,7 +69,6 @@ console.log("Subscribing to topic: ", t);
     return (<>
         <MakeOffer t1Address={t1Address} t2Address={t2Address} offerTopic={offerTopic} rootCid={rootCid} provider={provider}/>
         <br/>
-        Root CID: {rootCid} <br/>
         <Table striped bordered hover>
             <tbody>
                 {offerList.map((offer) => <tr key={offer.Id}><Offer offer={offer} offerTopic={offerTopic} rootCid={rootCid} provider={provider} /></tr>)}
