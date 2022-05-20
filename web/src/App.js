@@ -26,12 +26,10 @@ console.log("window.ipfs", window.ipfs);
     getIPFS();
   }, []);
 
-
-  if (!window.web3 || typeof window.ipfs === "undefined") return (<> <NavigationBar provider={provider} setProvider={setProvider} /> <br/> "Loading..." </>);
   return (<Card><Card.Body>
     <NavigationBar provider={provider} setProvider={setProvider} />
     <br />
-    <Body provider={provider}/>
+    { window.web3 && typeof window.ipfs !== "undefined" && <Body provider={provider}/> }
     </Card.Body></Card>);
 }
 
