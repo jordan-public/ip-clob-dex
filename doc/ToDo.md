@@ -1,12 +1,11 @@
-walletconnect + coinbase wallet
 implement fees
 whitepaper
+walletconnect + coinbase wallet
 
 re-think rebroadcasting
 
 pinning
 command line scripts (js)
-Uniswap flash swap
 dYdX flash swap
 
 White paper, video:
@@ -28,6 +27,9 @@ White paper, video:
 - Demo Take
 - Demo Flash Swap + opportunity notification
 
+Howto: after re-deploy
+- Clear old token addresses from wallet addresses (if there are new contracts deployed)
+- Reset nonce on wallett addresses
 
 To fix:
 To fix - low priority:
