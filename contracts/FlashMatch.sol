@@ -23,7 +23,7 @@ contract FlashMatch is IFlashCallee {
         assert(msg.sender == address(ftSwap)); // Must call the given FTSwap
         (swapRequest memory req) = abi.decode(flashData, (swapRequest));
         IERC20(req.token1).approve(address(ftSwap), type(uint256).max); // Refine this!
-        ftSwap.swap(req);
+        ftSwap.swap(req, new bytes(0));
     }
 
     // As usual in IPDEX, msg.sender must req1.token0.approve(swap, sufficient_amount) prior to calling this

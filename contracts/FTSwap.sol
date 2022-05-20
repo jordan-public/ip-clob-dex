@@ -72,10 +72,6 @@ console.log("done");
         return part; // Part that executed
     }
 
-    function swap(swapRequest calldata req) external returns (uint256 partExecuted) {
-        return swap(req, new bytes(0));
-    }
-
     function swap(swapRequest calldata req, bytes memory flashData) public returns (uint256 partExecuted) {
         require(req.amount0 < type(uint256).max / 10**18 && req.amount1 < type(uint256).max / 10**18, "IPDEX: Overflow");
         require(req.expiration >= block.timestamp, "IPDEX: Expired");
