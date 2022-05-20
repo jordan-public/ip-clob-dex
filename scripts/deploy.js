@@ -35,6 +35,13 @@ async function main() {
   fs.writeFile("deployed/FlashMatch" + flashMatch.deployTransaction.chainId + '.json', JSON.stringify(flashMatch, undefined, 2), (err) => { if (err) console.error(err) });
   console.log("FlashMatch deployed to:", flashMatch.address);
 
+  // We get the contract to deploy
+  const FlashSwapAMM = await hre.ethers.getContractFactory("FlashSwapAMM");
+  const flashSwapAMM = await FlashSwapAMM.deploy(ftSwap.address);
+  await flashSwapAMM.deployed();
+  fs.writeFile("deployed/FlashSwapAMM" + flashSwapAMM.deployTransaction.chainId + '.json', JSON.stringify(flashSwapAMM, undefined, 2), (err) => { if (err) console.error(err) });
+  console.log("FlashSwapAMM deployed to:", flashSwapAMM.address);
+
   const T1 = await hre.ethers.getContractFactory("FT");
   const t1 = await T1.deploy("Token 1", "T1", "1000000000000000000000");
   await t1.deployed();
