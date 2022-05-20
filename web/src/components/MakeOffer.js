@@ -6,7 +6,7 @@ import { BigNumber, ethers } from 'ethers';
 import afERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
-import dpFTSwap from '../@deployed/FTSwap31337.json';
+import dpFTSwap from '../@deployed/FTSwap.json';
 import random256hex from '../utils/random256hex';
 import decimalToUint256 from '../utils/decimalToUint256';
 
@@ -46,7 +46,8 @@ function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
     const onMakeOffer = async () => {
         if (!provider) { window.alert('No provider'); return; }
         const signer = provider.getSigner();
-        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const { chainId } = await provider.getNetwork();
+        const ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
         const offerId = random256hex();
 
         const token1 = new ethers.Contract(t1Address, afIERC20.abi, signer);
