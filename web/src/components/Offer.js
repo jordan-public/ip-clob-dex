@@ -8,15 +8,17 @@ import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.s
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
 import dpFTSwap from '../@deployed/FTSwap31337.json';
 import uint256ToDecimal from '../utils/uint256ToDecimal';
+import removeFromDag from '../utils/removeFromDag';
+import dagToOfferList from '../utils/dagToOfferList';
 
-function Offer({offer, provider}) {
+function Offer({offer, offerTopic, rootCid, provider}) {
     const [owner, setOwner] = React.useState(null);
     const [signerAddress, setSignerAddress] = React.useState(null);
     const [t1Decimals, setT1Decimals] = React.useState(null);
     const [t2Decimals, setT2Decimals] = React.useState(null);
     const [t1Symbol, setT1Symbol] = React.useState("");
     const [t2Symbol, setT2Symbol] = React.useState("");
-    const [partAvaliable, setPartAvaliable] = React.useState("0");
+    const [partAvailable, setPartAvailable] = React.useState("0");
     const [part, setPart] = React.useState(100);
     
     React.useEffect(() => {
@@ -28,10 +30,10 @@ function Offer({offer, provider}) {
             const ow = await ftSwap.checkSig(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             setOwner(ow);
 
-            const p = await ftSwap.partNullified(ow, offer.Id);
-            const pa = BigNumber.from(10).pow(BigNumber.from(18)).sub(p).toString();
-            setPartAvaliable(pa);
+            const pn = await ftSwap.partNullified(ow, offer.Id);
+            const pa = BigNumber.from(10).pow(BigNumber.from(18)).sub(pn).toString();
             setPart(parseInt(uint256ToDecimal(pa, 18) * 100.0));
+            setPartAvailable(pa);
 
             const token1 = new ethers.Contract(offer.Asset0, afERC20.abi, signer);
             setT1Decimals(await token1.decimals());
@@ -39,17 +41,50 @@ function Offer({offer, provider}) {
             const token2 = new ethers.Contract(offer.Asset1, afERC20.abi, signer);
             setT2Decimals(await token2.decimals());  
             setT2Symbol(await token2.symbol());
-
-            ftSwap.on("Change", async (offerId) => {
-                if (offerId === offer.Id) {
-console.log("Change event detected: ", offerId, "Offer: ", offer);
-                    const p = await ftSwap.partNullified(ow, offer.Id);
-                    setPartAvaliable(BigNumber.from(10).pow(BigNumber.from(18)).sub(p).toString());            
-                }
-            });
-console.log("Subscribed to event Change", "Offer: ", offer);
         }) ();
     }, [offer, provider]);
+    
+    React.useEffect(() => {
+        (async () => {
+            const paPerc = parseInt(uint256ToDecimal(partAvailable, 18) * 100.0);
+            if (paPerc < part) setPart(paPerc);
+        }) ();
+    }, [partAvailable]);
+    
+    React.useEffect(() => {
+console.log("Init effect");
+        let listener;
+        let ftSwap;
+        (async () => {
+            const signer = provider.getSigner();
+            ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+            const splitSignature = ethers.utils.splitSignature(offer.Signature);
+            const ow = await ftSwap.checkSig(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
+            listener = async (offerId) => {
+                if (offerId.toHexString() === offer.Id) {
+                    const p = await ftSwap.partNullified(ow, offer.Id);
+                    setPartAvailable(BigNumber.from(10).pow(BigNumber.from(18)).sub(p).toString());
+                    if (p.eq(BigNumber.from(10).pow(BigNumber.from(18)))) {
+                        const r = await removeFromDag(rootCid, offer.CID.toString());
+console.log("Removing : ", offer.CID.toString(), "from: ", await dagToOfferList(rootCid), "results in: ", await dagToOfferList(r));
+console.log("Applying new root: ", r, "old: ", rootCid);
+console.log("from offer: ", offer.Id, "=", offerId.toHexString(), "on topic: ", offerTopic);
+                        await window.ipfs.pubsub.publish(offerTopic, r);
+
+                    }
+                } else console.log("Unqualfied event: ", offerId.toHexString(), "in offer.Id= ", offer.Id);
+            };           
+console.log("Subscribing ", offer.Id, "to Change(offerId) event.");
+            ftSwap.on("Change", listener);
+console.log("Listener count (Change): ", ftSwap.listenerCount("Change"), "total: ", ftSwap.listenerCount());
+        }) ();
+        return () => {
+console.log("Cleanup effect");
+console.log("Unsubscribing ", offer.Id, "from Change(offerId) event.");
+            ftSwap.off("Change", listener);
+console.log("Listener count (Change): ", ftSwap.listenerCount("Change"), "total: ", ftSwap.listenerCount());
+        }
+    }, [rootCid]);
     
     const onTakeOffer = async () => {
         const signer = provider.getSigner();
@@ -85,7 +120,7 @@ console.log("Subscribed to event Change", "Offer: ", offer);
 
         const p = await ftSwap.partNullified(owner, offer.Id);
         const pa = BigNumber.from(10).pow(BigNumber.from(18)).sub(p);
-        setPartAvaliable(pa.toString());
+        setPartAvailable(pa.toString());
 
         setPart(parseInt(pa.div(BigNumber.from(10).pow(BigNumber.from(16))).toString()));            
     }
@@ -106,13 +141,13 @@ console.log("Subscribed to event Change", "Offer: ", offer);
 
         const p = await ftSwap.partNullified(owner, offer.Id);
         const pa = BigNumber.from(10).pow(BigNumber.from(18)).sub(p);
-        setPartAvaliable(pa.toString());
+        setPartAvailable(pa.toString());
 
         setPart(parseInt(pa.div(BigNumber.from(10).pow(BigNumber.from(16))).toString()));            
     }
 
     const onChangePart = (e) => {
-        if (uint256ToDecimal(partAvaliable, 18) * 100.0 < e.target.value) setPart(parseInt(uint256ToDecimal(partAvaliable, 18) * 100.0));
+        if (uint256ToDecimal(partAvailable, 18) * 100.0 < e.target.value) setPart(parseInt(uint256ToDecimal(partAvailable, 18) * 100.0));
         else setPart(e.target.value);
     }
 
@@ -120,8 +155,8 @@ console.log("Subscribed to event Change", "Offer: ", offer);
         <Accordion>
             <Accordion.Item eventKey="0">
             <Accordion.Header>
-                { uint256ToDecimal(offer.Amount1, t2Decimals) * uint256ToDecimal(partAvaliable, 18) } @
-                {offer.Amount0 / offer.Amount1} (Inverse: {uint256ToDecimal(offer.Amount0, t1Decimals) * uint256ToDecimal(partAvaliable, 18)} @ { offer.Amount1 / offer.Amount0})
+                { uint256ToDecimal(offer.Amount1, t2Decimals) * uint256ToDecimal(partAvailable, 18) } @
+                {offer.Amount0 / offer.Amount1} (Inverse: {uint256ToDecimal(offer.Amount0, t1Decimals) * uint256ToDecimal(partAvailable, 18)} @ { offer.Amount1 / offer.Amount0})
             </Accordion.Header>
             <Accordion.Body>
                 CID: { offer.CID } <br/>
@@ -133,7 +168,7 @@ console.log("Subscribed to event Change", "Offer: ", offer);
                 Price: { offer.Amount0 / offer.Amount1} {t2Symbol}/{t1Symbol} &nbsp;
                 = { offer.Amount1 / offer.Amount0}  {t1Symbol}/{t2Symbol}<br/>
                 Expires: { new Date(parseInt(offer.Expiration) * 1000).toString()} <br/>
-                { "Remaining " + uint256ToDecimal(partAvaliable, 16) + "% available." } <br/>
+                { "Remaining " + uint256ToDecimal(partAvailable, 16) + "% available." } <br/>
                 { owner !== signerAddress &&
                     <InputGroup>
                         <Button variant="primary" onClick={onTakeOffer} >
