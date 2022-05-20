@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { BigNumber, ethers } from 'ethers';
 import afERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
-import dpFTSwap from '../@deployed/FTSwap31337.json';
+import dpFTSwap from '../@deployed/FTSwap.json';
 import afFlashMatch from '../@artifacts/contracts/FlashMatch.sol/FlashMatch.json';
-import dpFlashMatch from '../@deployed/FlashMatch31337.json';
+import dpFlashMatch from '../@deployed/FlashMatch.json';
 import { CID } from 'multiformats/cid';
 import uint256ToDecimal from '../utils/uint256ToDecimal';
 
@@ -29,13 +29,14 @@ function FlashSwap({provider}) {
 
         const signer = provider.getSigner();
         const signerAddress = await signer.getAddress();
+        const { chainId } = await provider.getNetwork();
 
         // Record balance of base token (offer1.Asset0)
         const baseToken = new ethers.Contract(offer1.Asset0, afERC20.abi, signer);
         const startBaseBalance = await baseToken.balanceOf(signerAddress);
 
         // Check available unexecuted part for each offer and populate offerX.part with it
-        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
         const splitSignature1 = ethers.utils.splitSignature(offer1.Signature);
         const splitSignature2 = ethers.utils.splitSignature(offer2.Signature);
         const owner1 = await ftSwap.checkSig(offer1.Id, offer1.Asset0, offer1.Asset1, offer1.Amount0, offer1.Amount1, offer1.Expiration, splitSignature1.v, splitSignature1.r, splitSignature1.s);
@@ -51,7 +52,7 @@ function FlashSwap({provider}) {
         }
 
         // Flash Swap
-        const ftFlashMatch = new ethers.Contract(dpFlashMatch.address, afFlashMatch.abi, signer);
+        const ftFlashMatch = new ethers.Contract(dpFlashMatch[chainId].address, afFlashMatch.abi, signer);
         try {
             const splitSignature1 = ethers.utils.splitSignature(offer1.Signature);
             const splitSignature2 = ethers.utils.splitSignature(offer2.Signature);

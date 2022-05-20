@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: BUSL-1.1
-import React from 'react';
+import React, { Children } from 'react';
 import { Button, Form, InputGroup, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
 import afERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/IERC20.sol/IERC20.json';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
-import dpFTSwap from '../@deployed/FTSwap31337.json';
+import dpFTSwap from '../@deployed/FTSwap.json';
 import uint256ToDecimal from '../utils/uint256ToDecimal';
 import removeFromDag from '../utils/removeFromDag';
 import dagToOfferList from '../utils/dagToOfferList';
@@ -25,7 +25,8 @@ function Offer({offer, offerTopic, rootCid, provider}) {
         (async () => {
             const signer = provider.getSigner();
             setSignerAddress(await signer.getAddress());
-            const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+            const { chainId } = await provider.getNetwork();
+            const ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
             const splitSignature = ethers.utils.splitSignature(offer.Signature);
             const ow = await ftSwap.checkSig(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             setOwner(ow);
@@ -57,7 +58,8 @@ console.log("Init effect");
         let ftSwap;
         (async () => {
             const signer = provider.getSigner();
-            ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+            const { chainId } = await provider.getNetwork();
+            ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
             const splitSignature = ethers.utils.splitSignature(offer.Signature);
             const ow = await ftSwap.checkSig(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
             listener = async (offerId) => {
@@ -88,7 +90,8 @@ console.log("Listener count (Change): ", ftSwap.listenerCount("Change"), "total:
     
     const onTakeOffer = async () => {
         const signer = provider.getSigner();
-        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const { chainId } = await provider.getNetwork();
+        const ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
 
         // Approve spending of Asset1
         const token2 = new ethers.Contract(offer.Asset1, afIERC20.abi, signer);
@@ -127,7 +130,8 @@ console.log("Listener count (Change): ", ftSwap.listenerCount("Change"), "total:
 
     const onCancelOffer = async () => {
         const signer = provider.getSigner();
-        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const { chainId } = await provider.getNetwork();
+        const ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
         try {
             const tx = await ftSwap.cancelOffer(offer.Id);
 

@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { BigNumber, ethers } from 'ethers';
 import afERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
-import dpFTSwap from '../@deployed/FTSwap31337.json';
+import dpFTSwap from '../@deployed/FTSwap.json';
 import afFlashSwapAMM from '../@artifacts/contracts/FlashSwapAMM.sol/FlashSwapAMM.json';
-import dpFlashSwapAMM from '../@deployed/FlashSwapAMM31337.json';
+import dpFlashSwapAMM from '../@deployed/FlashSwapAMM.json';
 import { CID } from 'multiformats/cid';
 import uint256ToDecimal from '../utils/uint256ToDecimal';
 
@@ -27,9 +27,10 @@ function FlashSwap({provider}) {
         // Record balance of base token (offer1.Asset0)
         const baseToken = new ethers.Contract(offer.Asset0, afERC20.abi, signer);
         const startBaseBalance = await baseToken.balanceOf(signerAddress);
+        const { chainId } = await provider.getNetwork();
 
         // Check available unexecuted part for each offer and populate offerX.part with it
-        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
         const splitSignature = ethers.utils.splitSignature(offer.Signature);
         const owner = await ftSwap.checkSig(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);
         const pn = await ftSwap.partNullified(owner, offer.Id);
@@ -41,7 +42,7 @@ function FlashSwap({provider}) {
         }
 
         // Flash Swap
-        const ftFlashMatch = new ethers.Contract(dpFlashSwapAMM.address, afFlashSwapAMM.abi, signer);
+        const ftFlashMatch = new ethers.Contract(dpFlashSwapAMM[chainId].address, afFlashSwapAMM.abi, signer);
         try {
             const splitSignature = ethers.utils.splitSignature(offer.Signature);
             const tx = await ftFlashMatch.flashSwap(

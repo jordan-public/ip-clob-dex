@@ -8,7 +8,7 @@ import dagToOfferList from '../utils/dagToOfferList';
 import MakeOffer from './MakeOffer';
 import { ethers } from 'ethers';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
-import dpFTSwap from '../@deployed/FTSwap31337.json';
+import dpFTSwap from '../@deployed/FTSwap.json';
 
 function OrderBook({t1Address, t2Address, provider}) {
     const [offerTopic, setOfferTopic] = React.useState("");
@@ -23,7 +23,8 @@ function OrderBook({t1Address, t2Address, provider}) {
 
     const isValidOffer = async (offer) => {
         const signer = provider.getSigner();
-        const ftSwap = new ethers.Contract(dpFTSwap.address, afFTSwap.abi, signer);
+        const { chainId } = await provider.getNetwork();
+        const ftSwap = new ethers.Contract(dpFTSwap[chainId].address, afFTSwap.abi, signer);
         const splitSignature = ethers.utils.splitSignature(offer.Signature);
         return await ftSwap.checkValidOffer(offer.Id, offer.Asset0, offer.Asset1, offer.Amount0, offer.Amount1, offer.Expiration, splitSignature.v, splitSignature.r, splitSignature.s);     
     }
@@ -46,7 +47,7 @@ console.log("Offer list: ", l);
 
     React.useEffect(() => {
         (async () => {
-            const t = getOfferTableTopic(t1Address, t2Address, provider);
+            const t = await getOfferTableTopic(t1Address, t2Address, provider);
             if (t !== "") console.log("Offer topic(", t1Address, t2Address, "): ", t);
             if (t !== offerTopic && offerTopic !== "") await window.ipfs.pubsub.unsubscribe(offerTopic);
             setOfferTopic(t);
