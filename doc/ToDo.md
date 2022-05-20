@@ -1,5 +1,4 @@
 walletconnect + coinbase wallet
-events for refresh of order book: swap and token contracts (for authorize)
 implement fees
 
 re-think rebroadcasting
@@ -30,7 +29,6 @@ White paper, video:
 
 
 To fix:
-- No events on Flash Swaps
-- Displaying completed (canceled orders) - remove (filter out)
 To fix - low priority:
-- Events delivered twice
+- duplicate events for refresh of order book (one for each entry instead of 1 total)
+
