@@ -49,17 +49,13 @@ contract FTSwap is IFTSwap {
     }
 
     function safeTransferFrom(address token, address from, address to, uint256 value) private {
-console.log(IERC20(token).balanceOf(from));
-console.log(value);
-console.log(IERC20(token).allowance(from, address(this)));
         // bytes4(keccak256(bytes('transferFrom(address,address,uint256)')));
         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0x23b872dd, from, to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))), "IPDEX: Transfer failed");
-console.log("done");
     }
 
     function offerHash(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration) public view returns (bytes32) {
-        return keccak256(abi.encodePacked(address(this), offerId, token0, token1, amount0, amount1, expiration));
+        return keccak256(abi.encodePacked(address(this), offerId, token0, token1, amount0, amount1, expiration, block.chainid));
     }
 
     function checkSig(uint256 offerId, address token0, address token1, uint256 amount0, uint256 amount1, uint256 expiration, uint8 v, bytes32 r, bytes32 s) public view returns (address) {
@@ -106,19 +102,15 @@ console.log("done");
         require(req.amount0 < type(uint256).max / 10**18 && req.amount1 < type(uint256).max / 10**18, "IPDEX: Overflow");
         require(req.expiration >= block.timestamp, "IPDEX: Expired");
         address maker = checkSig(req.offerId, req.token0, req.token1, req.amount0, req.amount1, req.expiration, req.v, req.r, req.s);
-console.log("part");
-console.log(req.part);
         require(req.part <= 10**18, "IPDEX: Invalid part"); // Also prevents overflow
         if (partNullified(maker, req.offerId) + req.part > 10**18) partExecuted =  10**18 - partNullified(maker, req.offerId);
         else partExecuted = req.part;
         nullify(maker, req.offerId, partNullified(maker, req.offerId) + partExecuted);
-console.log("xfer1");
         safeTransferFrom(req.token0, maker, msg.sender, req.amount0 * partExecuted / 10**18); // Optimistically
         safeTransferFrom(req.token0, maker, address(owner), (req.amount0 * partExecuted / 10**18) * makerFee / 10**18);
         if (flashData.length > 0) IFlashCallee(msg.sender).flashCall(flashData);
         safeTransferFrom(req.token1, msg.sender, maker, req.amount1 * partExecuted / 10**18);
         safeTransferFrom(req.token1, msg.sender, address(owner), (req.amount1 * partExecuted / 10**18) * takerFee / 10**18);
-console.log("xfer2");
         emit Change(req.offerId);
     }
 
