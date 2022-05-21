@@ -8,24 +8,30 @@ import FlashSwap from './FlashSwap';
 import FlashSwapAMM from './FlashSwapAMM';
 import afIERC20 from '../@artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 
-function Body({provider}) {
+function Body({provider,  address}) {
     const [t1Address, setT1Address] = React.useState("");
     const [t2Address, setT2Address] = React.useState("");
     const [t1Symbol, setT1Symbol] = React.useState("");
     const [t2Symbol, setT2Symbol] = React.useState("");
 
     const onT1AddressChange = async (e) => {
-        setT1Address(e.currentTarget.value);
-        const signer = provider.getSigner();
-        const token1 = new ethers.Contract(e.currentTarget.value, afIERC20.abi, signer);
-        setT1Symbol(await token1.symbol());
+        const addr = e.currentTarget.value;
+        try {
+            const signer = provider.getSigner();
+            const token1 = new ethers.Contract(addr, afIERC20.abi, signer);
+            setT1Symbol(await token1.symbol());
+            setT1Address(addr);
+        } catch(_) {}
     }
 
     const onT2AddressChange = async (e) => {
-        setT2Address(e.currentTarget.value);
-        const signer = provider.getSigner();
-        const token2 = new ethers.Contract(e.currentTarget.value, afIERC20.abi, signer);
-        setT2Symbol(await token2.symbol());
+        const addr = e.currentTarget.value;
+        try {
+            const signer = provider.getSigner();
+            const token2 = new ethers.Contract(addr, afIERC20.abi, signer);
+            setT2Symbol(await token2.symbol());
+            setT2Address(addr);
+        } catch(_) {}
     }
 
     return (<>
@@ -53,7 +59,7 @@ function Body({provider}) {
             </Accordion.Body>
             </Accordion.Item>
         </Accordion>
-        <OrderBook t1Address={t1Address} t2Address={t2Address} provider={provider} />
+        <OrderBook t1Address={t1Address} t2Address={t2Address} provider={provider} address={address}/>
         <FlashSwap provider={provider} />
         <FlashSwapAMM provider={provider} />
     </>);

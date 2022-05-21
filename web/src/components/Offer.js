@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BUSL-1.1
-import React, { Children } from 'react';
+import React from 'react';
 import { Button, Form, InputGroup, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import { BigNumber, ethers } from 'ethers';
@@ -11,7 +11,7 @@ import uint256ToDecimal from '../utils/uint256ToDecimal';
 import removeFromDag from '../utils/removeFromDag';
 import dagToOfferList from '../utils/dagToOfferList';
 
-function Offer({offer, offerTopic, rootCid, provider}) {
+function Offer({offer, offerTopic, rootCid, provider, address}) {
     const [owner, setOwner] = React.useState(null);
     const [signerAddress, setSignerAddress] = React.useState(null);
     const [t1Decimals, setT1Decimals] = React.useState(null);
@@ -43,7 +43,7 @@ function Offer({offer, offerTopic, rootCid, provider}) {
             setT2Decimals(await token2.decimals());  
             setT2Symbol(await token2.symbol());
         }) ();
-    }, [offer, provider]);
+    }, [offer, provider, address]);
     
     React.useEffect(() => {
         (async () => {

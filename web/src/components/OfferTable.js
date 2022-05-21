@@ -10,7 +10,7 @@ import { ethers } from 'ethers';
 import afFTSwap from '../@artifacts/contracts/FTSwap.sol/FTSwap.json';
 import dpFTSwap from '../@deployed/FTSwap.json';
 
-function OrderBook({t1Address, t2Address, provider}) {
+function OrderBook({t1Address, t2Address, provider, address}) {
     const [offerTopic, setOfferTopic] = React.useState("");
     const [offerList, setOfferList] = React.useState([]);
 
@@ -71,7 +71,7 @@ console.log("Subscribing to topic: ", t);
         <br/>
         <Table striped bordered hover>
             <tbody>
-                {offerList.map((offer) => <tr key={offer.Id}><Offer offer={offer} offerTopic={offerTopic} rootCid={rootCid} provider={provider} /></tr>)}
+                {offerList.map((offer) => <tr key={offer.Id}><Offer offer={offer} offerTopic={offerTopic} rootCid={rootCid} provider={provider} address={address}/></tr>)}
             </tbody>
         </Table>
     </>);
