@@ -1,5 +1,5 @@
-implement fees
 whitepaper
+
 walletconnect + coinbase wallet
 
 re-think rebroadcasting
