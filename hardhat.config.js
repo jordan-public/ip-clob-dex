@@ -59,6 +59,12 @@ module.exports = {
         mnemonic: process.env.MNEMONIC,
       },
     },
+    emerald_testnet: {
+      url: "https://testnet.emerald.oasis.dev",
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
