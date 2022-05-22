@@ -1,6 +1,8 @@
-## [Hackathon Public Link - IPDEX - InterPlanetary Decentralized EXchange](https://showcase.ethglobal.com/hackmoney2022/ipdex-interplanetary-decentralized-exchange-498o0)
+## Hackathon Public Link - IPDEX - InterPlanetary Decentralized EXchange [see this link](https://showcase.ethglobal.com/hackmoney2022/ipdex-interplanetary-decentralized-exchange-498o0)
 
 (Formerly: ## [Hackathon Public Link - IPDEX - InterPlanetary Decentralized EXchange](https://showcase.ethglobal.com/hackmoney2022/ipdex-498o0))
+
+## Downloadable Demo Video - see [this link](../doc/IPDEX.mp4)
 
 To run the demo please check out the "deployed" branch of this repository. In it, the deployed artifacts are included, so it can be direcrly run. 
 
