@@ -1,0 +1,3466 @@
+{
+  "3": {
+    "interface": {
+      "fragments": [
+        {
+          "name": null,
+          "type": "constructor",
+          "inputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "name": "Change",
+          "anonymous": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "type": "event",
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "cancelOffer",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "checkSig",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "checkValidOffer",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bool",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bool",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "makerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "nullifiers",
+          "constant": true,
+          "inputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "offerHash",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "owner",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "partNullified",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "maker",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "setMakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newMakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "setOwner",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newOwner",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "setTakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newTakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "swap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            },
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "partExecuted",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "swapSimple",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "part",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "takerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      ],
+      "_abiCoder": {
+        "coerceFunc": null
+      },
+      "functions": {
+        "cancelOffer(uint256)": {
+          "type": "function",
+          "name": "cancelOffer",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "checkSig(uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32)": {
+          "type": "function",
+          "name": "checkSig",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "checkValidOffer(uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32)": {
+          "type": "function",
+          "name": "checkValidOffer",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bool",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bool",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "makerFee()": {
+          "type": "function",
+          "name": "makerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "nullifiers(bytes32)": {
+          "type": "function",
+          "name": "nullifiers",
+          "constant": true,
+          "inputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "offerHash(uint256,address,address,uint256,uint256,uint256)": {
+          "type": "function",
+          "name": "offerHash",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "owner()": {
+          "type": "function",
+          "name": "owner",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "partNullified(address,uint256)": {
+          "type": "function",
+          "name": "partNullified",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "maker",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "setMakerFee(uint256)": {
+          "type": "function",
+          "name": "setMakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newMakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "setOwner(address)": {
+          "type": "function",
+          "name": "setOwner",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newOwner",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "setTakerFee(uint256)": {
+          "type": "function",
+          "name": "setTakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newTakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "swap((uint256,uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32),bytes)": {
+          "type": "function",
+          "name": "swap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            },
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "partExecuted",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "swapSimple(uint256,uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32)": {
+          "type": "function",
+          "name": "swapSimple",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "part",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "takerFee()": {
+          "type": "function",
+          "name": "takerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      },
+      "errors": {},
+      "events": {
+        "Change(uint256)": {
+          "name": "Change",
+          "anonymous": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "type": "event",
+          "_isFragment": true
+        }
+      },
+      "structs": {},
+      "deploy": {
+        "name": null,
+        "type": "constructor",
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "_isInterface": true
+    },
+    "provider": "<WrappedHardhatProvider>",
+    "signer": "<SignerWithAddress 0xbBa60E9455D3689F29052944729cFd8c20d9c0b8>",
+    "callStatic": {},
+    "estimateGas": {},
+    "functions": {},
+    "populateTransaction": {},
+    "filters": {},
+    "_runningEvents": {},
+    "_wrappedEmits": {},
+    "address": "0x3003B9D7d42c599F3cDaC1e3Fbf1dCb791FFE735",
+    "resolvedAddress": {},
+    "deployTransaction": {
+      "hash": "0xd30b6db091cdc246f36e0754a62677bfdc47a3468ea2511a60621783df6dccea",
+      "type": 2,
+      "accessList": [],
+      "blockHash": null,
+      "blockNumber": null,
+      "transactionIndex": null,
+      "confirmations": 0,
+      "from": "0xbBa60E9455D3689F29052944729cFd8c20d9c0b8",
+      "gasPrice": {
+        "type": "BigNumber",
+        "hex": "0x3b9acaca"
+      },
+      "maxPriorityFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x3b9acab6"
+      },
+      "maxFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x3b9acaca"
+      },
+      "gasLimit": {
+        "type": "BigNumber",
+        "hex": "0x12da79"
+      },
+      "to": null,
+      "value": {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "nonce": 11,
+      "data": "0x6080604052655af3107a400060015566038d7ea4c6800060025534801561002557600080fd5b50600080546001600160a01b03191633179055611431806100476000396000f3fe608060405234801561001057600080fd5b50600436106100ea5760003560e01c80638fccd82c1161008c578063d6ace52311610066578063d6ace523146101ed578063ef706adf14610200578063f1cca8aa14610213578063fc741c7c1461022657600080fd5b80638fccd82c146101b4578063b8bd3dbb146101c7578063bfc0720f146101da57600080fd5b806343430393116100c8578063434303931461015a57806343f0179b1461016d57806385651e92146101765780638da5cb5b1461018957600080fd5b806303a0bd2e146100ef57806313af4035146101175780632997e86b1461012c575b600080fd5b6101026100fd366004610f89565b61022f565b60405190151581526020015b60405180910390f35b61012a610125366004611007565b6103bb565b005b61014c61013a366004611029565b60036020526000908152604090205481565b60405190815260200161010e565b61014c610168366004611042565b610410565b61014c60025481565b61014c61018436600461109a565b61048b565b60005461019c906001600160a01b031681565b6040516001600160a01b03909116815260200161010e565b61019c6101c2366004610f89565b6104d1565b61012a6101d5366004611029565b6105ac565b61014c6101e83660046110da565b610631565b61014c6101fb3660046111a6565b6109a0565b61012a61020e366004611029565b610c33565b61012a610221366004611029565b610c74565b61014c60015481565b60408051808201909152601c81527f19457468657265756d205369676e6564204d6573736167653a0a333200000000602082015260009081816102768d8d8d8d8d8d610410565b60405160200161028792919061125f565b60408051601f198184030181528282528051602091820120600080855291840180845281905260ff8a169284019290925260608301889052608083018790529092509060019060a0016020604051602081039080840390855afa1580156102f2573d6000803e3d6000fd5b50505060206040510351905042881015801561031e5750670de0b6b3a764000061031c828f61048b565b105b80156103aa5750604051636eb1769f60e11b81526001600160a01b0382811660048301523060248301528b91908e169063dd62ed3e9060440160206040518083038186803b15801561036f57600080fd5b505afa158015610383573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103a79190611281565b10155b9d9c50505050505050505050505050565b6000546001600160a01b031633146103ee5760405162461bcd60e51b81526004016103e59061129a565b60405180910390fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6040516bffffffffffffffffffffffff1930606090811b821660208401526034830189905287811b8216605484015286901b166068820152607c8101849052609c810183905260bc81018290524660dc82015260009060fc016040516020818303038152906040528051906020012090509695505050505050565b60006003600084846040516020016104a49291906112c7565b60405160208183030381529060405280519060200120815260200190815260200160002054905092915050565b60408051808201909152601c81527f19457468657265756d205369676e6564204d6573736167653a0a333200000000602082015260009081816105188d8d8d8d8d8d610410565b60405160200161052992919061125f565b60408051601f1981840301815282825280516020918201206000845290830180835281905260ff8916918301919091526060820187905260808201869052915060019060a0016020604051602081039080840390855afa158015610591573d6000803e3d6000fd5b5050604051601f1901519d9c50505050505050505050505050565b6000546001600160a01b031633146105d65760405162461bcd60e51b81526004016103e59061129a565b662386f26fc10000811061062c5760405162461bcd60e51b815260206004820152601860248201527f49504445583a2041627573697665206d616b657220666565000000000000000060448201526064016103e5565b600155565b6000610647670de0b6b3a76400006000196112ff565b836080013510801561066f5750610668670de0b6b3a76400006000196112ff565b8360a00135105b6106ad5760405162461bcd60e51b815260206004820152600f60248201526e49504445583a204f766572666c6f7760881b60448201526064016103e5565b428360c0013510156106f25760405162461bcd60e51b815260206004820152600e60248201526d12541111560e88115e1c1a5c995960921b60448201526064016103e5565b600061074d602085013561070c6060870160408801611007565b61071c6080880160608901611007565b608088013560a089013560c08a013561073c6101008c0160e08d01611321565b8b61010001358c61012001356104d1565b9050670de0b6b3a76400008435111561079e5760405162461bcd60e51b815260206004820152601360248201527212541111560e88125b9d985b1a59081c185c9d606a1b60448201526064016103e5565b670de0b6b3a764000084356107b783602088013561048b565b6107c1919061133c565b11156107ee576107d581856020013561048b565b6107e790670de0b6b3a7640000611354565b91506107f3565b833591505b61081681602086013584610807838361048b565b610811919061133c565b610cf9565b6108516108296060860160408701611007565b8233670de0b6b3a76400006108428760808b013561136b565b61084c91906112ff565b610e3f565b6108a36108646060860160408701611007565b60005460015484916001600160a01b031690670de0b6b3a7640000908161088f8960808d013561136b565b61089991906112ff565b610842919061136b565b82511561090057604051634f30558b60e11b81523390639e60ab16906108cd90869060040161138a565b600060405180830381600087803b1580156108e757600080fd5b505af11580156108fb573d6000803e3d6000fd5b505050505b61092c6109136080860160608701611007565b3383670de0b6b3a76400006108428760a08b013561136b565b61096a61093f6080860160608701611007565b60005460025433916001600160a01b031690670de0b6b3a7640000908161088f8960a08d013561136b565b6040516020850135907ff956bf4ad7309c08d315aa8ed40ff728f7e6f2652f6bfbdadf06e5538e1c176890600090a25092915050565b60006109b6670de0b6b3a76400006000196112ff565b871080156109d657506109d3670de0b6b3a76400006000196112ff565b86105b610a145760405162461bcd60e51b815260206004820152600f60248201526e49504445583a204f766572666c6f7760881b60448201526064016103e5565b42851015610a555760405162461bcd60e51b815260206004820152600e60248201526d12541111560e88115e1c1a5c995960921b60448201526064016103e5565b6000610a688b8b8b8b8b8b8b8b8b6104d1565b9050670de0b6b3a76400008c1115610ab85760405162461bcd60e51b815260206004820152601360248201527212541111560e88125b9d985b1a59081c185c9d606a1b60448201526064016103e5565b670de0b6b3a76400008c610acc838e61048b565b610ad6919061133c565b1115610afb57610ae6818c61048b565b610af890670de0b6b3a7640000611354565b9b505b60008c610b08838e61048b565b610b12919061133c565b9050610b1f828d83610cf9565b506000670de0b6b3a7640000610b358e8b61136b565b610b3f91906112ff565b9050610b4d8b833384610e3f565b670de0b6b3a764000060015482610b64919061136b565b610b6e91906112ff565b600054909150610b8b908c9084906001600160a01b031684610e3f565b506000670de0b6b3a7640000610ba18e8a61136b565b610bab91906112ff565b9050610bb98a338484610e3f565b670de0b6b3a764000060025482610bd0919061136b565b610bda91906112ff565b600054909150610bf7908b9033906001600160a01b031684610e3f565b506040518b907ff956bf4ad7309c08d315aa8ed40ff728f7e6f2652f6bfbdadf06e5538e1c176890600090a250999a9950505050505050505050565b610c463382670de0b6b3a7640000610cf9565b60405181907ff956bf4ad7309c08d315aa8ed40ff728f7e6f2652f6bfbdadf06e5538e1c176890600090a250565b6000546001600160a01b03163314610c9e5760405162461bcd60e51b81526004016103e59061129a565b662386f26fc100008110610cf45760405162461bcd60e51b815260206004820152601860248201527f49504445583a20416275736976652074616b657220666565000000000000000060448201526064016103e5565b600255565b80600360008585604051602001610d119291906112c7565b604051602081830303815290604052805190602001208152602001908152602001600020541115610d905760405162461bcd60e51b815260206004820152602360248201527f49504445583a204f7264657220726573757272656374696f6e20666f726269646044820152623232b760e91b60648201526084016103e5565b670de0b6b3a7640000811115610dfa5760405162461bcd60e51b815260206004820152602960248201527f49504445583a204f72646572206f7665722d6e756c6c696669636174696f6e206044820152683337b93134b23232b760b91b60648201526084016103e5565b80600360008585604051602001610e129291906112c7565b60405160208183030381529060405280519060200120815260200190815260200160002081905550505050565b604080516001600160a01b0385811660248301528481166044830152606480830185905283518084039091018152608490920183526020820180516001600160e01b03166323b872dd60e01b1790529151600092839290881691610ea391906113bd565b6000604051808303816000865af19150503d8060008114610ee0576040519150601f19603f3d011682016040523d82523d6000602084013e610ee5565b606091505b5091509150818015610f0f575080511580610f0f575080806020019051810190610f0f91906113d9565b610f545760405162461bcd60e51b815260206004820152601660248201527512541111560e88151c985b9cd9995c8819985a5b195960521b60448201526064016103e5565b505050505050565b80356001600160a01b0381168114610f7357600080fd5b919050565b803560ff81168114610f7357600080fd5b60008060008060008060008060006101208a8c031215610fa857600080fd5b89359850610fb860208b01610f5c565b9750610fc660408b01610f5c565b965060608a0135955060808a0135945060a08a01359350610fe960c08b01610f78565b925060e08a013591506101008a013590509295985092959850929598565b60006020828403121561101957600080fd5b61102282610f5c565b9392505050565b60006020828403121561103b57600080fd5b5035919050565b60008060008060008060c0878903121561105b57600080fd5b8635955061106b60208801610f5c565b945061107960408801610f5c565b9350606087013592506080870135915060a087013590509295509295509295565b600080604083850312156110ad57600080fd5b6110b683610f5c565b946020939093013593505050565b634e487b7160e01b600052604160045260246000fd5b6000808284036101608112156110ef57600080fd5b610140808212156110ff57600080fd5b849350830135905067ffffffffffffffff8082111561111d57600080fd5b818501915085601f83011261113157600080fd5b813581811115611143576111436110c4565b604051601f8201601f19908116603f0116810190838211818310171561116b5761116b6110c4565b8160405282815288602084870101111561118457600080fd5b8260208601602083013760006020848301015280955050505050509250929050565b6000806000806000806000806000806101408b8d0312156111c657600080fd5b8a35995060208b013598506111dd60408c01610f5c565b97506111eb60608c01610f5c565b965060808b0135955060a08b0135945060c08b0135935061120e60e08c01610f78565b92506101008b013591506101208b013590509295989b9194979a5092959850565b60005b8381101561124a578181015183820152602001611232565b83811115611259576000848401525b50505050565b6000835161127181846020880161122f565b9190910191825250602001919050565b60006020828403121561129357600080fd5b5051919050565b60208082526013908201527212541111560e88155b985d5d1a1bdc9a5e9959606a1b604082015260600190565b60609290921b6bffffffffffffffffffffffff19168252601482015260340190565b634e487b7160e01b600052601160045260246000fd5b60008261131c57634e487b7160e01b600052601260045260246000fd5b500490565b60006020828403121561133357600080fd5b61102282610f78565b6000821982111561134f5761134f6112e9565b500190565b600082821015611366576113666112e9565b500390565b6000816000190483118215151615611385576113856112e9565b500290565b60208152600082518060208401526113a981604085016020870161122f565b601f01601f19169190910160400192915050565b600082516113cf81846020870161122f565b9190910192915050565b6000602082840312156113eb57600080fd5b8151801515811461102257600080fdfea264697066735822122001a7a1d0ddec260952e54af2a2c9cb551b79a15f0cc1419584297926214cef3564736f6c63430008090033",
+      "r": "0xef6b0a19bc7b1fbcf519708f3b7d5bf932d781b7cb6754d51e627b74a4047355",
+      "s": "0x6aef5e4d79152b6bafa80e8b0bbd1871cc74aa5994ae7f41777c7d0b6a61fadb",
+      "v": 0,
+      "creates": "0x3003B9D7d42c599F3cDaC1e3Fbf1dCb791FFE735",
+      "chainId": 3
+    },
+    "_deployedPromise": {}
+  },
+  "31337": {
+    "interface": {
+      "fragments": [
+        {
+          "name": null,
+          "type": "constructor",
+          "inputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "name": "Change",
+          "anonymous": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "type": "event",
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "cancelOffer",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "checkSig",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "checkValidOffer",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bool",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bool",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "makerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "nullifiers",
+          "constant": true,
+          "inputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "offerHash",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "owner",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "partNullified",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "maker",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "setMakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newMakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "setOwner",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newOwner",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "setTakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newTakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "swap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            },
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "partExecuted",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "swapSimple",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "part",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "takerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      ],
+      "_abiCoder": {
+        "coerceFunc": null
+      },
+      "functions": {
+        "cancelOffer(uint256)": {
+          "type": "function",
+          "name": "cancelOffer",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "checkSig(uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32)": {
+          "type": "function",
+          "name": "checkSig",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "checkValidOffer(uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32)": {
+          "type": "function",
+          "name": "checkValidOffer",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bool",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bool",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "makerFee()": {
+          "type": "function",
+          "name": "makerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "nullifiers(bytes32)": {
+          "type": "function",
+          "name": "nullifiers",
+          "constant": true,
+          "inputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "offerHash(uint256,address,address,uint256,uint256,uint256)": {
+          "type": "function",
+          "name": "offerHash",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "owner()": {
+          "type": "function",
+          "name": "owner",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "partNullified(address,uint256)": {
+          "type": "function",
+          "name": "partNullified",
+          "constant": true,
+          "inputs": [
+            {
+              "name": "maker",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        },
+        "setMakerFee(uint256)": {
+          "type": "function",
+          "name": "setMakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newMakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "setOwner(address)": {
+          "type": "function",
+          "name": "setOwner",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newOwner",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "setTakerFee(uint256)": {
+          "type": "function",
+          "name": "setTakerFee",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "newTakerFee",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "swap((uint256,uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32),bytes)": {
+          "type": "function",
+          "name": "swap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            },
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "partExecuted",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "swapSimple(uint256,uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32)": {
+          "type": "function",
+          "name": "swapSimple",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "part",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "expiration",
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            {
+              "name": "v",
+              "type": "uint8",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint8",
+              "_isParamType": true
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes32",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "takerFee()": {
+          "type": "function",
+          "name": "takerFee",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      },
+      "errors": {},
+      "events": {
+        "Change(uint256)": {
+          "name": "Change",
+          "anonymous": false,
+          "inputs": [
+            {
+              "name": "offerId",
+              "type": "uint256",
+              "indexed": true,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            }
+          ],
+          "type": "event",
+          "_isFragment": true
+        }
+      },
+      "structs": {},
+      "deploy": {
+        "name": null,
+        "type": "constructor",
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "_isInterface": true
+    },
+    "provider": "<WrappedHardhatProvider>",
+    "signer": "<SignerWithAddress 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266>",
+    "callStatic": {},
+    "estimateGas": {},
+    "functions": {},
+    "populateTransaction": {},
+    "filters": {},
+    "_runningEvents": {},
+    "_wrappedEmits": {},
+    "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "resolvedAddress": {},
+    "deployTransaction": {
+      "hash": "0x008d760e430f1eb873b616394b04d73e8eb0607ec47e0103ed3ac93f22d3f0c3",
+      "type": 2,
+      "accessList": [],
+      "blockHash": "0xb1d65c5d25c00bd05901aa5985e582cb4c1a5f0e54f83b8d7a58e77c1b158932",
+      "blockNumber": 1,
+      "transactionIndex": 0,
+      "confirmations": 1,
+      "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      "gasPrice": {
+        "type": "BigNumber",
+        "hex": "0x342770c0"
+      },
+      "maxPriorityFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "maxFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x4201eab3"
+      },
+      "gasLimit": {
+        "type": "BigNumber",
+        "hex": "0x12da79"
+      },
+      "to": null,
+      "value": {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "nonce": 0,
+      "data": "0x6080604052655af3107a400060015566038d7ea4c6800060025534801561002557600080fd5b50600080546001600160a01b03191633179055611431806100476000396000f3fe608060405234801561001057600080fd5b50600436106100ea5760003560e01c80638fccd82c1161008c578063d6ace52311610066578063d6ace523146101ed578063ef706adf14610200578063f1cca8aa14610213578063fc741c7c1461022657600080fd5b80638fccd82c146101b4578063b8bd3dbb146101c7578063bfc0720f146101da57600080fd5b806343430393116100c8578063434303931461015a57806343f0179b1461016d57806385651e92146101765780638da5cb5b1461018957600080fd5b806303a0bd2e146100ef57806313af4035146101175780632997e86b1461012c575b600080fd5b6101026100fd366004610f89565b61022f565b60405190151581526020015b60405180910390f35b61012a610125366004611007565b6103bb565b005b61014c61013a366004611029565b60036020526000908152604090205481565b60405190815260200161010e565b61014c610168366004611042565b610410565b61014c60025481565b61014c61018436600461109a565b61048b565b60005461019c906001600160a01b031681565b6040516001600160a01b03909116815260200161010e565b61019c6101c2366004610f89565b6104d1565b61012a6101d5366004611029565b6105ac565b61014c6101e83660046110da565b610631565b61014c6101fb3660046111a6565b6109a0565b61012a61020e366004611029565b610c33565b61012a610221366004611029565b610c74565b61014c60015481565b60408051808201909152601c81527f19457468657265756d205369676e6564204d6573736167653a0a333200000000602082015260009081816102768d8d8d8d8d8d610410565b60405160200161028792919061125f565b60408051601f198184030181528282528051602091820120600080855291840180845281905260ff8a169284019290925260608301889052608083018790529092509060019060a0016020604051602081039080840390855afa1580156102f2573d6000803e3d6000fd5b50505060206040510351905042881015801561031e5750670de0b6b3a764000061031c828f61048b565b105b80156103aa5750604051636eb1769f60e11b81526001600160a01b0382811660048301523060248301528b91908e169063dd62ed3e9060440160206040518083038186803b15801561036f57600080fd5b505afa158015610383573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103a79190611281565b10155b9d9c50505050505050505050505050565b6000546001600160a01b031633146103ee5760405162461bcd60e51b81526004016103e59061129a565b60405180910390fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6040516bffffffffffffffffffffffff1930606090811b821660208401526034830189905287811b8216605484015286901b166068820152607c8101849052609c810183905260bc81018290524660dc82015260009060fc016040516020818303038152906040528051906020012090509695505050505050565b60006003600084846040516020016104a49291906112c7565b60405160208183030381529060405280519060200120815260200190815260200160002054905092915050565b60408051808201909152601c81527f19457468657265756d205369676e6564204d6573736167653a0a333200000000602082015260009081816105188d8d8d8d8d8d610410565b60405160200161052992919061125f565b60408051601f1981840301815282825280516020918201206000845290830180835281905260ff8916918301919091526060820187905260808201869052915060019060a0016020604051602081039080840390855afa158015610591573d6000803e3d6000fd5b5050604051601f1901519d9c50505050505050505050505050565b6000546001600160a01b031633146105d65760405162461bcd60e51b81526004016103e59061129a565b662386f26fc10000811061062c5760405162461bcd60e51b815260206004820152601860248201527f49504445583a2041627573697665206d616b657220666565000000000000000060448201526064016103e5565b600155565b6000610647670de0b6b3a76400006000196112ff565b836080013510801561066f5750610668670de0b6b3a76400006000196112ff565b8360a00135105b6106ad5760405162461bcd60e51b815260206004820152600f60248201526e49504445583a204f766572666c6f7760881b60448201526064016103e5565b428360c0013510156106f25760405162461bcd60e51b815260206004820152600e60248201526d12541111560e88115e1c1a5c995960921b60448201526064016103e5565b600061074d602085013561070c6060870160408801611007565b61071c6080880160608901611007565b608088013560a089013560c08a013561073c6101008c0160e08d01611321565b8b61010001358c61012001356104d1565b9050670de0b6b3a76400008435111561079e5760405162461bcd60e51b815260206004820152601360248201527212541111560e88125b9d985b1a59081c185c9d606a1b60448201526064016103e5565b670de0b6b3a764000084356107b783602088013561048b565b6107c1919061133c565b11156107ee576107d581856020013561048b565b6107e790670de0b6b3a7640000611354565b91506107f3565b833591505b61081681602086013584610807838361048b565b610811919061133c565b610cf9565b6108516108296060860160408701611007565b8233670de0b6b3a76400006108428760808b013561136b565b61084c91906112ff565b610e3f565b6108a36108646060860160408701611007565b60005460015484916001600160a01b031690670de0b6b3a7640000908161088f8960808d013561136b565b61089991906112ff565b610842919061136b565b82511561090057604051634f30558b60e11b81523390639e60ab16906108cd90869060040161138a565b600060405180830381600087803b1580156108e757600080fd5b505af11580156108fb573d6000803e3d6000fd5b505050505b61092c6109136080860160608701611007565b3383670de0b6b3a76400006108428760a08b013561136b565b61096a61093f6080860160608701611007565b60005460025433916001600160a01b031690670de0b6b3a7640000908161088f8960a08d013561136b565b6040516020850135907ff956bf4ad7309c08d315aa8ed40ff728f7e6f2652f6bfbdadf06e5538e1c176890600090a25092915050565b60006109b6670de0b6b3a76400006000196112ff565b871080156109d657506109d3670de0b6b3a76400006000196112ff565b86105b610a145760405162461bcd60e51b815260206004820152600f60248201526e49504445583a204f766572666c6f7760881b60448201526064016103e5565b42851015610a555760405162461bcd60e51b815260206004820152600e60248201526d12541111560e88115e1c1a5c995960921b60448201526064016103e5565b6000610a688b8b8b8b8b8b8b8b8b6104d1565b9050670de0b6b3a76400008c1115610ab85760405162461bcd60e51b815260206004820152601360248201527212541111560e88125b9d985b1a59081c185c9d606a1b60448201526064016103e5565b670de0b6b3a76400008c610acc838e61048b565b610ad6919061133c565b1115610afb57610ae6818c61048b565b610af890670de0b6b3a7640000611354565b9b505b60008c610b08838e61048b565b610b12919061133c565b9050610b1f828d83610cf9565b506000670de0b6b3a7640000610b358e8b61136b565b610b3f91906112ff565b9050610b4d8b833384610e3f565b670de0b6b3a764000060015482610b64919061136b565b610b6e91906112ff565b600054909150610b8b908c9084906001600160a01b031684610e3f565b506000670de0b6b3a7640000610ba18e8a61136b565b610bab91906112ff565b9050610bb98a338484610e3f565b670de0b6b3a764000060025482610bd0919061136b565b610bda91906112ff565b600054909150610bf7908b9033906001600160a01b031684610e3f565b506040518b907ff956bf4ad7309c08d315aa8ed40ff728f7e6f2652f6bfbdadf06e5538e1c176890600090a250999a9950505050505050505050565b610c463382670de0b6b3a7640000610cf9565b60405181907ff956bf4ad7309c08d315aa8ed40ff728f7e6f2652f6bfbdadf06e5538e1c176890600090a250565b6000546001600160a01b03163314610c9e5760405162461bcd60e51b81526004016103e59061129a565b662386f26fc100008110610cf45760405162461bcd60e51b815260206004820152601860248201527f49504445583a20416275736976652074616b657220666565000000000000000060448201526064016103e5565b600255565b80600360008585604051602001610d119291906112c7565b604051602081830303815290604052805190602001208152602001908152602001600020541115610d905760405162461bcd60e51b815260206004820152602360248201527f49504445583a204f7264657220726573757272656374696f6e20666f726269646044820152623232b760e91b60648201526084016103e5565b670de0b6b3a7640000811115610dfa5760405162461bcd60e51b815260206004820152602960248201527f49504445583a204f72646572206f7665722d6e756c6c696669636174696f6e206044820152683337b93134b23232b760b91b60648201526084016103e5565b80600360008585604051602001610e129291906112c7565b60405160208183030381529060405280519060200120815260200190815260200160002081905550505050565b604080516001600160a01b0385811660248301528481166044830152606480830185905283518084039091018152608490920183526020820180516001600160e01b03166323b872dd60e01b1790529151600092839290881691610ea391906113bd565b6000604051808303816000865af19150503d8060008114610ee0576040519150601f19603f3d011682016040523d82523d6000602084013e610ee5565b606091505b5091509150818015610f0f575080511580610f0f575080806020019051810190610f0f91906113d9565b610f545760405162461bcd60e51b815260206004820152601660248201527512541111560e88151c985b9cd9995c8819985a5b195960521b60448201526064016103e5565b505050505050565b80356001600160a01b0381168114610f7357600080fd5b919050565b803560ff81168114610f7357600080fd5b60008060008060008060008060006101208a8c031215610fa857600080fd5b89359850610fb860208b01610f5c565b9750610fc660408b01610f5c565b965060608a0135955060808a0135945060a08a01359350610fe960c08b01610f78565b925060e08a013591506101008a013590509295985092959850929598565b60006020828403121561101957600080fd5b61102282610f5c565b9392505050565b60006020828403121561103b57600080fd5b5035919050565b60008060008060008060c0878903121561105b57600080fd5b8635955061106b60208801610f5c565b945061107960408801610f5c565b9350606087013592506080870135915060a087013590509295509295509295565b600080604083850312156110ad57600080fd5b6110b683610f5c565b946020939093013593505050565b634e487b7160e01b600052604160045260246000fd5b6000808284036101608112156110ef57600080fd5b610140808212156110ff57600080fd5b849350830135905067ffffffffffffffff8082111561111d57600080fd5b818501915085601f83011261113157600080fd5b813581811115611143576111436110c4565b604051601f8201601f19908116603f0116810190838211818310171561116b5761116b6110c4565b8160405282815288602084870101111561118457600080fd5b8260208601602083013760006020848301015280955050505050509250929050565b6000806000806000806000806000806101408b8d0312156111c657600080fd5b8a35995060208b013598506111dd60408c01610f5c565b97506111eb60608c01610f5c565b965060808b0135955060a08b0135945060c08b0135935061120e60e08c01610f78565b92506101008b013591506101208b013590509295989b9194979a5092959850565b60005b8381101561124a578181015183820152602001611232565b83811115611259576000848401525b50505050565b6000835161127181846020880161122f565b9190910191825250602001919050565b60006020828403121561129357600080fd5b5051919050565b60208082526013908201527212541111560e88155b985d5d1a1bdc9a5e9959606a1b604082015260600190565b60609290921b6bffffffffffffffffffffffff19168252601482015260340190565b634e487b7160e01b600052601160045260246000fd5b60008261131c57634e487b7160e01b600052601260045260246000fd5b500490565b60006020828403121561133357600080fd5b61102282610f78565b6000821982111561134f5761134f6112e9565b500190565b600082821015611366576113666112e9565b500390565b6000816000190483118215151615611385576113856112e9565b500290565b60208152600082518060208401526113a981604085016020870161122f565b601f01601f19169190910160400192915050565b600082516113cf81846020870161122f565b9190910192915050565b6000602082840312156113eb57600080fd5b8151801515811461102257600080fdfea264697066735822122001a7a1d0ddec260952e54af2a2c9cb551b79a15f0cc1419584297926214cef3564736f6c63430008090033",
+      "r": "0x68a2f9b83215a7dbfedb2368a75a23ca356d6120b560409dfcf13932ff737407",
+      "s": "0x4e0e9f541c035710938b90df8055d0b7e6aa9dc05bd5add2b37223368b299e2f",
+      "v": 0,
+      "creates": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "chainId": 31337
+    },
+    "_deployedPromise": {}
+  }
+}

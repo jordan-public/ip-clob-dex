@@ -1,0 +1,880 @@
+{
+  "3": {
+    "interface": {
+      "fragments": [
+        {
+          "name": null,
+          "type": "constructor",
+          "inputs": [
+            {
+              "name": "_swap",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "flashCall",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "flashSwap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "ftSwap",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      ],
+      "_abiCoder": {
+        "coerceFunc": null
+      },
+      "functions": {
+        "flashCall(bytes)": {
+          "type": "function",
+          "name": "flashCall",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "flashSwap((uint256,uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32))": {
+          "type": "function",
+          "name": "flashSwap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "ftSwap()": {
+          "type": "function",
+          "name": "ftSwap",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      },
+      "errors": {},
+      "events": {},
+      "structs": {},
+      "deploy": {
+        "name": null,
+        "type": "constructor",
+        "inputs": [
+          {
+            "name": "_swap",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "_isInterface": true
+    },
+    "provider": "<WrappedHardhatProvider>",
+    "signer": "<SignerWithAddress 0xbBa60E9455D3689F29052944729cFd8c20d9c0b8>",
+    "callStatic": {},
+    "estimateGas": {},
+    "functions": {},
+    "populateTransaction": {},
+    "filters": {},
+    "_runningEvents": {},
+    "_wrappedEmits": {},
+    "address": "0x8F0Ff9c66f2d2A5a3C0a4313219DCAD10Cfe509e",
+    "resolvedAddress": {},
+    "deployTransaction": {
+      "hash": "0x4c251a059a74ffa990f1bc69f0505e4fa67e47894684b2b50d2e00426c5872e5",
+      "type": 2,
+      "accessList": [],
+      "blockHash": null,
+      "blockNumber": null,
+      "transactionIndex": null,
+      "confirmations": 0,
+      "from": "0xbBa60E9455D3689F29052944729cFd8c20d9c0b8",
+      "gasPrice": {
+        "type": "BigNumber",
+        "hex": "0x3b9acacb"
+      },
+      "maxPriorityFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x3b9acab6"
+      },
+      "maxFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x3b9acacb"
+      },
+      "gasLimit": {
+        "type": "BigNumber",
+        "hex": "0x10c61a"
+      },
+      "to": null,
+      "value": {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "nonce": 13,
+      "data": "0x608060405234801561001057600080fd5b5060405161131038038061131083398101604081905261002f91610054565b600080546001600160a01b0319166001600160a01b0392909216919091179055610084565b60006020828403121561006657600080fd5b81516001600160a01b038116811461007d57600080fd5b9392505050565b61127d806100936000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80639e60ab1614610046578063d07871d01461005b578063e7da04e01461008a575b600080fd5b610059610054366004610e51565b61009d565b005b60005461006e906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b610059610098366004610f34565b6106ad565b6000546001600160a01b031633146100b7576100b7610fcd565b60006100c582840184610f34565b6040808201516060830151915163e6a4390560e01b81526001600160a01b03918216600482015291166024820152909150600090735c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f9063e6a439059060440160206040518083038186803b15801561013057600080fd5b505afa158015610144573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101689190610fe3565b905060008083606001516001600160a01b031684604001516001600160a01b03161061019d57836060015184604001516101a8565b836040015184606001515b91509150600080600080866001600160a01b0316630902f1ac6040518163ffffffff1660e01b815260040160606040518083038186803b1580156101eb57600080fd5b505afa1580156101ff573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610223919061101e565b506040516370a0823160e01b815230600482015291935091506000906001600160a01b038816906370a082319060240160206040518083038186803b15801561026b57600080fd5b505afa15801561027f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102a3919061106e565b1115610337576040516370a0823160e01b81523060048201526000945061033290879089906001600160a01b038316906370a08231906024015b60206040518083038186803b1580156102f557600080fd5b505afa158015610309573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061032d919061106e565b610d36565b610453565b6040516370a0823160e01b815230600482015273f164fc0ec4e93095b804a4795bbe1e041497b92a9063054d50d4906001600160a01b038816906370a082319060240160206040518083038186803b15801561039257600080fd5b505afa1580156103a6573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103ca919061106e565b6040516001600160e01b031960e084901b16815260048101919091526001600160701b0380851660248301528516604482015260640160206040518083038186803b15801561041857600080fd5b505afa15801561042c573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610450919061106e565b93505b60608801516040516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b15801561049957600080fd5b505afa1580156104ad573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104d1919061106e565b1115610514576040516370a0823160e01b81523060048201526000935061050f90869089906001600160a01b038316906370a08231906024016102dd565b610630565b6040516370a0823160e01b815230600482015273f164fc0ec4e93095b804a4795bbe1e041497b92a9063054d50d4906001600160a01b038916906370a082319060240160206040518083038186803b15801561056f57600080fd5b505afa158015610583573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105a7919061106e565b6040516001600160e01b031960e084901b16815260048101919091526001600160701b0380861660248301528416604482015260640160206040518083038186803b1580156105f557600080fd5b505afa158015610609573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061062d919061106e565b92505b6040805160008152602081019182905263022c0d9f60e01b9091526001600160a01b0388169063022c0d9f9061066f90879087903090602481016110df565b600060405180830381600087803b15801561068957600080fd5b505af115801561069d573d6000803e3d6000fd5b5050505050505050505050505050565b60005460208201516040808401516060850151608086015160a087015160c088015160e08901516101008a01516101208b015197516323f3360b60e21b815260048101999099526001600160a01b0396871660248a015294861660448901526064880193909352608487019190915260a486015260ff1660c485015260e4840152610104830191909152909116906385651e92908290638fccd82c906101240160206040518083038186803b15801561076557600080fd5b505afa158015610779573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061079d9190610fe3565b60208401516040516001600160e01b031960e085901b1681526001600160a01b039092166004830152602482015260440160206040518083038186803b1580156107e657600080fd5b505afa1580156107fa573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061081e919061106e565b61083090670de0b6b3a7640000611116565b815260408082015190516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b15801561087857600080fd5b505afa15801561088c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108b0919061106e565b60608301516040516370a0823160e01b81523060048201529192506000916001600160a01b03909116906370a082319060240160206040518083038186803b1580156108fb57600080fd5b505afa15801561090f573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610933919061106e565b606084015160005460405163095ea7b360e01b81526001600160a01b0391821660048201526000196024820152929350169063095ea7b390604401602060405180830381600087803b15801561098857600080fd5b505af115801561099c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109c0919061113b565b506000836040516020016109d491906111eb565b60408051601f198184030181529082905260005463bfc0720f60e01b83529092506001600160a01b03169063bfc0720f90610a159087908590600401611200565b602060405180830381600087803b158015610a2f57600080fd5b505af1158015610a43573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610a67919061106e565b5060408085015190516370a0823160e01b815230600482015284916001600160a01b0316906370a082319060240160206040518083038186803b158015610aad57600080fd5b505afa158015610ac1573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610ae5919061106e565b10158015610b6e575060608401516040516370a0823160e01b815230600482015283916001600160a01b0316906370a082319060240160206040518083038186803b158015610b3357600080fd5b505afa158015610b47573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b6b919061106e565b10155b610bb85760405162461bcd60e51b815260206004820152601660248201527549504445582d46413a20556e70726f66697461626c6560501b60448201526064015b60405180910390fd5b60408085015190516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b158015610bfe57600080fd5b505afa158015610c12573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610c36919061106e565b1115610c745760408481015190516370a0823160e01b8152306004820152610c74919033906001600160a01b038316906370a08231906024016102dd565b60608401516040516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b158015610cba57600080fd5b505afa158015610cce573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610cf2919061106e565b1115610d305760608401516040516370a0823160e01b8152306004820152610d30919033906001600160a01b038316906370a08231906024016102dd565b50505050565b604080516001600160a01b038481166024830152604480830185905283518084039091018152606490920183526020820180516001600160e01b031663a9059cbb60e01b1790529151600092839290871691610d92919061122b565b6000604051808303816000865af19150503d8060008114610dcf576040519150601f19603f3d011682016040523d82523d6000602084013e610dd4565b606091505b5091509150818015610dfe575080511580610dfe575080806020019051810190610dfe919061113b565b610e4a5760405162461bcd60e51b815260206004820152601960248201527f49504445582d46533a205472616e73666572206661696c6564000000000000006044820152606401610baf565b5050505050565b60008060208385031215610e6457600080fd5b823567ffffffffffffffff80821115610e7c57600080fd5b818501915085601f830112610e9057600080fd5b813581811115610e9f57600080fd5b866020828501011115610eb157600080fd5b60209290920196919550909350505050565b604051610140810167ffffffffffffffff81118282101715610ef557634e487b7160e01b600052604160045260246000fd5b60405290565b6001600160a01b0381168114610f1057600080fd5b50565b8035610f1e81610efb565b919050565b803560ff81168114610f1e57600080fd5b60006101408284031215610f4757600080fd5b610f4f610ec3565b8235815260208301356020820152610f6960408401610f13565b6040820152610f7a60608401610f13565b60608201526080830135608082015260a083013560a082015260c083013560c0820152610fa960e08401610f23565b60e08201526101008381013590820152610120928301359281019290925250919050565b634e487b7160e01b600052600160045260246000fd5b600060208284031215610ff557600080fd5b815161100081610efb565b9392505050565b80516001600160701b0381168114610f1e57600080fd5b60008060006060848603121561103357600080fd5b61103c84611007565b925061104a60208501611007565b9150604084015163ffffffff8116811461106357600080fd5b809150509250925092565b60006020828403121561108057600080fd5b5051919050565b60005b838110156110a257818101518382015260200161108a565b83811115610d305750506000910152565b600081518084526110cb816020860160208601611087565b601f01601f19169290920160200192915050565b84815283602082015260018060a01b038316604082015260806060820152600061110c60808301846110b3565b9695505050505050565b60008282101561113657634e487b7160e01b600052601160045260246000fd5b500390565b60006020828403121561114d57600080fd5b8151801515811461100057600080fd5b8051825260208101516020830152604081015161118560408401826001600160a01b03169052565b5060608101516111a060608401826001600160a01b03169052565b506080810151608083015260a081015160a083015260c081015160c083015260e08101516111d360e084018260ff169052565b50610100818101519083015261012090810151910152565b61014081016111fa828461115d565b92915050565b600061016061120f838661115d565b80610140840152611222818401856110b3565b95945050505050565b6000825161123d818460208701611087565b919091019291505056fea2646970667358221220e58a43eecc78dca098df2f7dedf9ba65affee3d4d26507757d51d43ed6113d7064736f6c634300080900330000000000000000000000003003b9d7d42c599f3cdac1e3fbf1dcb791ffe735",
+      "r": "0x415203b6f3fb8c052481fe414abb9b45d916ca34f9925ec994878daab514381d",
+      "s": "0x45d6224aff627e9f07f15a98c9e2b675faebeb1170a03340ee0adc71555f519b",
+      "v": 0,
+      "creates": "0x8F0Ff9c66f2d2A5a3C0a4313219DCAD10Cfe509e",
+      "chainId": 3
+    },
+    "_deployedPromise": {}
+  },
+  "31337": {
+    "interface": {
+      "fragments": [
+        {
+          "name": null,
+          "type": "constructor",
+          "inputs": [
+            {
+              "name": "_swap",
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "flashCall",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "flashSwap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        {
+          "type": "function",
+          "name": "ftSwap",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      ],
+      "_abiCoder": {
+        "coerceFunc": null
+      },
+      "functions": {
+        "flashCall(bytes)": {
+          "type": "function",
+          "name": "flashCall",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "flashData",
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "flashSwap((uint256,uint256,address,address,uint256,uint256,uint256,uint8,bytes32,bytes32))": {
+          "type": "function",
+          "name": "flashSwap",
+          "constant": false,
+          "inputs": [
+            {
+              "name": "req",
+              "type": "tuple",
+              "indexed": null,
+              "components": [
+                {
+                  "name": "part",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "offerId",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token0",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "token1",
+                  "type": "address",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "address",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount0",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "amount1",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "expiration",
+                  "type": "uint256",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint256",
+                  "_isParamType": true
+                },
+                {
+                  "name": "v",
+                  "type": "uint8",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "uint8",
+                  "_isParamType": true
+                },
+                {
+                  "name": "r",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                },
+                {
+                  "name": "s",
+                  "type": "bytes32",
+                  "indexed": null,
+                  "components": null,
+                  "arrayLength": null,
+                  "arrayChildren": null,
+                  "baseType": "bytes32",
+                  "_isParamType": true
+                }
+              ],
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "tuple",
+              "_isParamType": true
+            }
+          ],
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "gas": null,
+          "_isFragment": true
+        },
+        "ftSwap()": {
+          "type": "function",
+          "name": "ftSwap",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "gas": null,
+          "_isFragment": true
+        }
+      },
+      "errors": {},
+      "events": {},
+      "structs": {},
+      "deploy": {
+        "name": null,
+        "type": "constructor",
+        "inputs": [
+          {
+            "name": "_swap",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "_isInterface": true
+    },
+    "provider": "<WrappedHardhatProvider>",
+    "signer": "<SignerWithAddress 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266>",
+    "callStatic": {},
+    "estimateGas": {},
+    "functions": {},
+    "populateTransaction": {},
+    "filters": {},
+    "_runningEvents": {},
+    "_wrappedEmits": {},
+    "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+    "resolvedAddress": {},
+    "deployTransaction": {
+      "hash": "0xa4b7b2e8a0674751a2280632473c7ba0d72ac9850da83cd09de6611878ccae64",
+      "type": 2,
+      "accessList": [],
+      "blockHash": "0x0edf3ed2271533cd88a08735c5998633c11115b7544ad9f5aaeaf4044120bb36",
+      "blockNumber": 3,
+      "transactionIndex": 0,
+      "confirmations": 1,
+      "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      "gasPrice": {
+        "type": "BigNumber",
+        "hex": "0x28bbe429"
+      },
+      "maxPriorityFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "maxFeePerGas": {
+        "type": "BigNumber",
+        "hex": "0x338dccc3"
+      },
+      "gasLimit": {
+        "type": "BigNumber",
+        "hex": "0x10c61a"
+      },
+      "to": null,
+      "value": {
+        "type": "BigNumber",
+        "hex": "0x00"
+      },
+      "nonce": 2,
+      "data": "0x608060405234801561001057600080fd5b5060405161131038038061131083398101604081905261002f91610054565b600080546001600160a01b0319166001600160a01b0392909216919091179055610084565b60006020828403121561006657600080fd5b81516001600160a01b038116811461007d57600080fd5b9392505050565b61127d806100936000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80639e60ab1614610046578063d07871d01461005b578063e7da04e01461008a575b600080fd5b610059610054366004610e51565b61009d565b005b60005461006e906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b610059610098366004610f34565b6106ad565b6000546001600160a01b031633146100b7576100b7610fcd565b60006100c582840184610f34565b6040808201516060830151915163e6a4390560e01b81526001600160a01b03918216600482015291166024820152909150600090735c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f9063e6a439059060440160206040518083038186803b15801561013057600080fd5b505afa158015610144573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101689190610fe3565b905060008083606001516001600160a01b031684604001516001600160a01b03161061019d57836060015184604001516101a8565b836040015184606001515b91509150600080600080866001600160a01b0316630902f1ac6040518163ffffffff1660e01b815260040160606040518083038186803b1580156101eb57600080fd5b505afa1580156101ff573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610223919061101e565b506040516370a0823160e01b815230600482015291935091506000906001600160a01b038816906370a082319060240160206040518083038186803b15801561026b57600080fd5b505afa15801561027f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102a3919061106e565b1115610337576040516370a0823160e01b81523060048201526000945061033290879089906001600160a01b038316906370a08231906024015b60206040518083038186803b1580156102f557600080fd5b505afa158015610309573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061032d919061106e565b610d36565b610453565b6040516370a0823160e01b815230600482015273f164fc0ec4e93095b804a4795bbe1e041497b92a9063054d50d4906001600160a01b038816906370a082319060240160206040518083038186803b15801561039257600080fd5b505afa1580156103a6573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103ca919061106e565b6040516001600160e01b031960e084901b16815260048101919091526001600160701b0380851660248301528516604482015260640160206040518083038186803b15801561041857600080fd5b505afa15801561042c573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610450919061106e565b93505b60608801516040516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b15801561049957600080fd5b505afa1580156104ad573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104d1919061106e565b1115610514576040516370a0823160e01b81523060048201526000935061050f90869089906001600160a01b038316906370a08231906024016102dd565b610630565b6040516370a0823160e01b815230600482015273f164fc0ec4e93095b804a4795bbe1e041497b92a9063054d50d4906001600160a01b038916906370a082319060240160206040518083038186803b15801561056f57600080fd5b505afa158015610583573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105a7919061106e565b6040516001600160e01b031960e084901b16815260048101919091526001600160701b0380861660248301528416604482015260640160206040518083038186803b1580156105f557600080fd5b505afa158015610609573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061062d919061106e565b92505b6040805160008152602081019182905263022c0d9f60e01b9091526001600160a01b0388169063022c0d9f9061066f90879087903090602481016110df565b600060405180830381600087803b15801561068957600080fd5b505af115801561069d573d6000803e3d6000fd5b5050505050505050505050505050565b60005460208201516040808401516060850151608086015160a087015160c088015160e08901516101008a01516101208b015197516323f3360b60e21b815260048101999099526001600160a01b0396871660248a015294861660448901526064880193909352608487019190915260a486015260ff1660c485015260e4840152610104830191909152909116906385651e92908290638fccd82c906101240160206040518083038186803b15801561076557600080fd5b505afa158015610779573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061079d9190610fe3565b60208401516040516001600160e01b031960e085901b1681526001600160a01b039092166004830152602482015260440160206040518083038186803b1580156107e657600080fd5b505afa1580156107fa573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061081e919061106e565b61083090670de0b6b3a7640000611116565b815260408082015190516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b15801561087857600080fd5b505afa15801561088c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108b0919061106e565b60608301516040516370a0823160e01b81523060048201529192506000916001600160a01b03909116906370a082319060240160206040518083038186803b1580156108fb57600080fd5b505afa15801561090f573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610933919061106e565b606084015160005460405163095ea7b360e01b81526001600160a01b0391821660048201526000196024820152929350169063095ea7b390604401602060405180830381600087803b15801561098857600080fd5b505af115801561099c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109c0919061113b565b506000836040516020016109d491906111eb565b60408051601f198184030181529082905260005463bfc0720f60e01b83529092506001600160a01b03169063bfc0720f90610a159087908590600401611200565b602060405180830381600087803b158015610a2f57600080fd5b505af1158015610a43573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610a67919061106e565b5060408085015190516370a0823160e01b815230600482015284916001600160a01b0316906370a082319060240160206040518083038186803b158015610aad57600080fd5b505afa158015610ac1573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610ae5919061106e565b10158015610b6e575060608401516040516370a0823160e01b815230600482015283916001600160a01b0316906370a082319060240160206040518083038186803b158015610b3357600080fd5b505afa158015610b47573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b6b919061106e565b10155b610bb85760405162461bcd60e51b815260206004820152601660248201527549504445582d46413a20556e70726f66697461626c6560501b60448201526064015b60405180910390fd5b60408085015190516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b158015610bfe57600080fd5b505afa158015610c12573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610c36919061106e565b1115610c745760408481015190516370a0823160e01b8152306004820152610c74919033906001600160a01b038316906370a08231906024016102dd565b60608401516040516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b158015610cba57600080fd5b505afa158015610cce573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610cf2919061106e565b1115610d305760608401516040516370a0823160e01b8152306004820152610d30919033906001600160a01b038316906370a08231906024016102dd565b50505050565b604080516001600160a01b038481166024830152604480830185905283518084039091018152606490920183526020820180516001600160e01b031663a9059cbb60e01b1790529151600092839290871691610d92919061122b565b6000604051808303816000865af19150503d8060008114610dcf576040519150601f19603f3d011682016040523d82523d6000602084013e610dd4565b606091505b5091509150818015610dfe575080511580610dfe575080806020019051810190610dfe919061113b565b610e4a5760405162461bcd60e51b815260206004820152601960248201527f49504445582d46533a205472616e73666572206661696c6564000000000000006044820152606401610baf565b5050505050565b60008060208385031215610e6457600080fd5b823567ffffffffffffffff80821115610e7c57600080fd5b818501915085601f830112610e9057600080fd5b813581811115610e9f57600080fd5b866020828501011115610eb157600080fd5b60209290920196919550909350505050565b604051610140810167ffffffffffffffff81118282101715610ef557634e487b7160e01b600052604160045260246000fd5b60405290565b6001600160a01b0381168114610f1057600080fd5b50565b8035610f1e81610efb565b919050565b803560ff81168114610f1e57600080fd5b60006101408284031215610f4757600080fd5b610f4f610ec3565b8235815260208301356020820152610f6960408401610f13565b6040820152610f7a60608401610f13565b60608201526080830135608082015260a083013560a082015260c083013560c0820152610fa960e08401610f23565b60e08201526101008381013590820152610120928301359281019290925250919050565b634e487b7160e01b600052600160045260246000fd5b600060208284031215610ff557600080fd5b815161100081610efb565b9392505050565b80516001600160701b0381168114610f1e57600080fd5b60008060006060848603121561103357600080fd5b61103c84611007565b925061104a60208501611007565b9150604084015163ffffffff8116811461106357600080fd5b809150509250925092565b60006020828403121561108057600080fd5b5051919050565b60005b838110156110a257818101518382015260200161108a565b83811115610d305750506000910152565b600081518084526110cb816020860160208601611087565b601f01601f19169290920160200192915050565b84815283602082015260018060a01b038316604082015260806060820152600061110c60808301846110b3565b9695505050505050565b60008282101561113657634e487b7160e01b600052601160045260246000fd5b500390565b60006020828403121561114d57600080fd5b8151801515811461100057600080fd5b8051825260208101516020830152604081015161118560408401826001600160a01b03169052565b5060608101516111a060608401826001600160a01b03169052565b506080810151608083015260a081015160a083015260c081015160c083015260e08101516111d360e084018260ff169052565b50610100818101519083015261012090810151910152565b61014081016111fa828461115d565b92915050565b600061016061120f838661115d565b80610140840152611222818401856110b3565b95945050505050565b6000825161123d818460208701611087565b919091019291505056fea2646970667358221220e58a43eecc78dca098df2f7dedf9ba65affee3d4d26507757d51d43ed6113d7064736f6c634300080900330000000000000000000000005fbdb2315678afecb367f032d93f642f64180aa3",
+      "r": "0xde368f7dbb5b6f526bd8760d732d0d4e4d5915a9c8f179963c78059fb0edbffa",
+      "s": "0x0d7d59900af14ccd4e65e9065348c477ec8daa5decc4ced39c739f32bfee3b68",
+      "v": 1,
+      "creates": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      "chainId": 31337
+    },
+    "_deployedPromise": {}
+  }
+}
