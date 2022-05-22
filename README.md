@@ -17,7 +17,7 @@ We have created a truly decentralized CLOB using IPFS technologies with gas-free
 
 ## How It's Made
 
-### CLOB Storage
+### Decentralized CLOB Storage
 IPDEX uses the IPFS Decentralized Directed Acyclic Graph (DAG) in order to maintain a truly decentralized Central Limit Order Book. The content addressability of the IPFS DAG nodes allow for extremely efficient caching of the order books. Namely, if we have the CID of a node previously seen, and we know that we have traversed and cached the entire subDAG starting from that node, we know for sure that we don not have to revisit that subDAG again, the content addressability guarantees that subDAG is immutable. Similarly, if we visit an already cached node CID while traversing a DAG, we do not need to traverse that subDAG again. 
 
 ### Decentralized CLOB Updates
