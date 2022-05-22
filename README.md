@@ -38,12 +38,12 @@ The FlashMatch contract (callable from the web interface) can match two off-chai
 #### AMM Limit Orders
 The contract FlashSwapAMM (callable from the web interface) takes an Order Book entry and tries to execute it against a specific Automated Market Maker (AMM; specifically Uniswap V2 in this example). If profitable, it succeeds and pays the profit tho the caller. Otherwise it reverts. This effectively creates Limit Orders executable against the AMM. Anyone can oportunistically execute such limit orders, thus contributing to the decentalization of Limit Order execution on AMMs. There is no disincentive, to automate this process.
 
-### Fees
-Every on-chain settlement transaction collects fees from the Maker and the Taker (separate rates - see FTSwap.makerFee() and FTSwap.takerFee()). The fee rates are stored in the FTSwap contract and they can be changed by the Owner. The fees are paid to the Owner. Eventually, the ownership of IPDEX can be tokenized, and such governance tokens can be used for voting on changes of these fee rates.
 ### Implementation
 The front-end is written in React and uses the IPFS APIs as well as Ethers.js to check conditions and execute on-chain transactions.
 We have implemented only EVM execution, although the same technology can be used for many other blockchains.
 
+## Fees
+Every on-chain settlement transaction collects fees from the Maker and the Taker (separate rates - see FTSwap.makerFee() and FTSwap.takerFee()). The fee rates are stored in the FTSwap contract and they can be changed by the Owner. The fees are paid to the Owner. Eventually, the ownership of IPDEX can be tokenized, and such governance tokens can be used for voting on changes of these fee rates.
 ## Project initialization
 
 After cloning this repository, run the following in the root folder:
