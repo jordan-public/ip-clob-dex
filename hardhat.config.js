@@ -54,7 +54,7 @@ module.exports = {
       },
     },
     mumbai: {
-      url: "https://rpc-mumbai.maticvigil.com/",
+      url: process.env.MUMBAI_URL,
       accounts: {
         mnemonic: process.env.MNEMONIC,
       },
