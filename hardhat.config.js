@@ -44,10 +44,20 @@ module.exports = {
     }
   },
   networks: {
+    localhost: {
+      url: "http://localhost:8545",
+    },
     ropsten: {
       url: process.env.ROPSTEN_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+    },
+    mumbai: {
+      url: "https://rpc-mumbai.maticvigil.com/",
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
     },
   },
   gasReporter: {
