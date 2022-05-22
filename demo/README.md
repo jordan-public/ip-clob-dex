@@ -4,7 +4,13 @@
 
 ## Downloadable Demo Video - see [this link](../doc/IPDEX.mp4)
 
-To run the demo please check out the "deployed" branch of this repository. In it, the deployed artifacts are included, so it can be direcrly run. 
+## Deployed on these networks:
+- Oasis Emerald
+- Polygon Mumbai
+- Ropsten
+- HardHat (see below to redeploy for demo/testing)
+
+To run the demo **please check out the "deployed" branch** of this repository. In it, the deployed artifacts are included, so it can be direcrly run. 
 
 To run the demo against local Hardhat node, run the following. This is not needed for running against public testnet or production blockchain on which IPDEX is deployed:
 ```shell
