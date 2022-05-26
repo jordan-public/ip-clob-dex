@@ -13,9 +13,9 @@ IPDEX is a Decentralized Central Limit Order Book exchange. Financial instrument
 
 Automated Market Makers (AMM) are popular because of their availability, but different financial instruments require different AMM formulas which come with inefficiencies.
 
-Maintaining on-chain Order Books is a way to assure they are decentralized, but the cost is prohibitive, especially for EVM based blockchains. The only known established on-chain Central Limit Order Book (CLOB) is Serum on the Solaris blockchain. For EVM blockchains, hybrid exchanges such as dYdX maintain the Order Books off-chain while executing the transactions on-chain.
+Maintaining on-chain Order Books is a way to assure they are decentralized, but the cost is prohibitive, especially for EVM based blockchains. The only known established on-chain Central Limit Order Book (CLOB) is Serum on the Solaris blockchain. For EVM blockchains, hybrid exchanges such as dYdX maintain centralized Order Books off-chain while executing the transactions on-chain.
 
-We have created a truly decentralized CLOB using IPFS technologies with gas-free Order Book maintenance and on-chain transaction execution.
+We have created a truly decentralized CLOB using IPFS technologies with gas-free Order Book maintenance and on-chain transaction settlement.
 
 ## How It's Made
 
