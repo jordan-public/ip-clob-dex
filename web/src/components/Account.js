@@ -4,16 +4,15 @@ import { Button } from 'react-bootstrap';
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 
-function Account({provider, setProvider, setAddress}) {
-    const [account, setAccount] = React.useState("");
+function Account({provider, setProvider, address, setAddress}) {
     const [network, setNetwork] = React.useState(null);
 
     React.useEffect(() => {
         if (!window.ethereum) return;
-        window.ethereum.on("connect", (info) => { console.log(info); });
-        window.ethereum.on('accountsChanged', (accounts) => { setAccount(accounts[0]); setAddress(accounts[0]); });
-        window.ethereum.on('chainChanged', (chainId) => { window.location.reload(); });
-        window.ethereum.on('disconnect', (error) => { window.location.reload(); });
+        window.ethereum.on("connect", info => console.log(info) );
+        window.ethereum.on('accountsChanged', accounts => setAddress(accounts[0].toLowerCase()) );
+        window.ethereum.on('chainChanged', chainId => window.location.reload() );
+        window.ethereum.on('disconnect', error => window.location.reload() );
     }, []);
 
     const onConnect = async () => {
@@ -31,11 +30,11 @@ function Account({provider, setProvider, setAddress}) {
         const p = new ethers.providers.Web3Provider(instance);
         setProvider(p);
         const signer = p.getSigner();
-        setAccount(await signer.getAddress());
+        setAddress((await signer.getAddress()).toLowerCase());
         setNetwork(await p.getNetwork());
     }
 
-    if (account !== "") return (<>Account: {account} Network: {network && network.name} ({network && network.chainId})</>);
+    if (address) return (<>Account: {address} Network: {network && network.name} ({network && network.chainId})</>);
     else return(<Button onClick={onConnect}>Connect</Button>);
 }
 

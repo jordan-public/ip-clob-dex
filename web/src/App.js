@@ -28,7 +28,7 @@ console.log("window.ipfs", window.ipfs);
   }, []);
 
   return (<Card><Card.Body>
-    <NavigationBar provider={provider} setProvider={setProvider} setAddress={setAddress}/>
+    <NavigationBar provider={provider} setProvider={setProvider} address={address} setAddress={setAddress}/>
     <br />
     { window.web3 && typeof window.ipfs !== "undefined" && <Body provider={provider} address={address}/> }
     </Card.Body></Card>);
