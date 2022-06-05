@@ -3,7 +3,7 @@
 🥇 [First Place: IPFS/Filecoin — Best Use](https://showcase.ethglobal.com/hackmoney2022/ipdex-interplanetary-decentralized-exchange-498o0)
 
 🥇 [First Place: Uniswap Grants Program — Most Innovative](https://showcase.ethglobal.com/hackmoney2022/ipdex-interplanetary-decentralized-exchange-498o0)
-# ![IPDEX](doc/IPDEXLogoSmall.png) IPDEX - Inter-Planetary Decentralized EXchange
+# ![IPDEX](doc/IPDEXLogoSmall.png) IPDEX - InterPlanetary Decentralized EXchange
 Inter-Planetary Decentralized EXchange - gas-free Central Limit Order Book using IPFS technologies
 
 ## Demo
