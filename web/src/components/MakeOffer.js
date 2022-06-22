@@ -21,6 +21,7 @@ function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
 
     React.useEffect(() => {
         (async () => {
+            if (!provider) return;
             const signer = provider.getSigner();
             if (t1Address) {
                 const token1 = new ethers.Contract(t1Address, afERC20.abi, signer);
@@ -48,7 +49,7 @@ function MakeOffer({t1Address, t2Address, offerTopic, rootCid, provider}) {
     }
 
     const onMakeOffer = async () => {
-        if (!provider) { window.alert('No provider'); return; }
+        if (!provider) { window.alert('No provider - please connect'); return; }
         if (t1Address === "" || t2Address === "") { window.alert('Please select assets above'); return; }
         let offer = null;
         try {
