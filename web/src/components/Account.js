@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
+import WalletConnectProvider from '@walletconnect/ethereum-provider';
 
 function Account({provider, setProvider, address, setAddress}) {
     const [network, setNetwork] = React.useState(null);
@@ -40,9 +41,6 @@ function Account({provider, setProvider, address, setAddress}) {
         };
 
         try {
-            const WalletConnectProvider = (
-              await import('@walletconnect/ethereum-provider')
-            ).default;
             const walletConnectEthereum = {
               package: WalletConnectProvider,
               options: {
