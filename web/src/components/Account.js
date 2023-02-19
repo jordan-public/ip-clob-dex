@@ -87,6 +87,10 @@ function Account({provider, setProvider, address, setAddress}) {
 
     const onDisconnect = async () => {
         await web3Modal.clearCachedProvider();
+        if (provider?.disconnect && typeof provider.disconnect === 'function') {
+            await provider.disconnect()
+        }
+        window.localStorage.removeItem('walletconnect');
         setNetwork(null);
         setAddress(null);
         setProvider(null);
