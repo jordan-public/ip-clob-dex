@@ -27,3 +27,6 @@ https://medium.com/geographit/accessing-react-state-in-event-listeners-with-uses
 
 React Hooks: useEffect() is called twice even if an empty array is used as an argument
 https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
+
+Webpack 5, Polyfill problem solution:
+https://stackoverflow.com/questions/73042033/you-attempted-to-import-node-modules-console-browserify-index-js-which-falls
