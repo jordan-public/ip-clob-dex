@@ -48,10 +48,14 @@ function Account({provider, setProvider, address, setAddress}) {
               package: WalletConnectProvider,
               options: {
                 rpc: {
+                    3: process.env.ROPSTEN_URL,
                     5: "http://127.0.0.1:8545/",
                     137: "https://rpc-mainnet.matic.network",
                     31337: "http://127.0.0.1:8545",
-                    80001: "https://matic-mumbai.chainstacklabs.com",
+                    42261: "https://testnet.emerald.oasis.dev/",
+                    42262: "https://emerald.oasis.dev",
+                    80001: process.env.MUMBAI_URL,
+
                 },
               },
             };
