@@ -87,22 +87,22 @@ For testing from web site served by the React tets web server from localhost:300
 Tasks:
 
 ```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.js
+pnpx hardhat accounts
+pnpx hardhat compile
+pnpx hardhat clean
+pnpx hardhat test
+pnpx hardhat node
+pnpx hardhat help
+REPORT_GAS=true pnpx hardhat test
+pnpx hardhat coverage
+pnpx hardhat run scripts/deploy.js
 node scripts/deploy.js
-npx eslint '**/*.js'
-npx eslint '**/*.js' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
+pnpx eslint '**/*.js'
+pnpx eslint '**/*.js' --fix
+pnpx prettier '**/*.{json,sol,md}' --check
+pnpx prettier '**/*.{json,sol,md}' --write
+pnpx solhint 'contracts/**/*.sol'
+pnpx solhint 'contracts/**/*.sol' --fix
 ```
 
 ## Etherscan verification
@@ -118,5 +118,5 @@ hardhat run --network ropsten scripts/deploy.js
 Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
 
 ```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
+pnpx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
 ```
