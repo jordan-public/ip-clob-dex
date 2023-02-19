@@ -53,9 +53,9 @@ Every on-chain settlement transaction collects fees from the Maker and the Taker
 After cloning this repository, run the following in the root folder:
 ```shell
 ./setup.sh
-npm install
+pnpm install
 cd web
-npm install
+pnpm install
 ```
 ## IPFS Configuration
 
