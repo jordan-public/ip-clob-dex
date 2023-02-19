@@ -27,7 +27,7 @@ function Account({provider, setProvider, address, setAddress}) {
             setNetwork(null);
             setAddress(null);
             setProvider(null);
-            if (Web3Modal) await Web3Modal.clearCachedProvider();
+            if (web3Modal) await web3Modal.clearCachedProvider();
         };
         window.ethereum.on('disconnect', onDisconnect);
         return () => {
