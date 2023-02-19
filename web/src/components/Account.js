@@ -22,12 +22,12 @@ function Account({provider, setProvider, address, setAddress}) {
         window.ethereum.on('accountsChanged', onAaccountsChanged);
         const onChainChanged = chainId => window.location.reload();
         window.ethereum.on('chainChanged', onChainChanged);
-        const onDisconnect = async (error: { code: number; message: string }) => {
+        const onDisconnect = async (error) => {
             console.log("Disconnected: ", error);
             setNetwork(null);
             setAddress(null);
             setProvider(null);
-            if (web3Modal) await web3Modal.clearCachedProvider();
+            if (Web3Modal) await Web3Modal.clearCachedProvider();
         };
         window.ethereum.on('disconnect', onDisconnect);
         return () => {
