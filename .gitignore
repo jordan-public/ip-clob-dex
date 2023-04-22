@@ -8,3 +8,5 @@ typechain
 cache
 artifacts/*/
 deployed/*.json
+
+**/.DS_Store
