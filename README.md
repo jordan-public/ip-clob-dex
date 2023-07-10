@@ -1,4 +1,4 @@
-[This project](https://showcase.ethglobal.com/hackmoney2022/ipdex-interplanetary-decentralized-exchange-498o0) won the following prizes at the [EthGlobal HackMoney 2022](https://showcase.ethglobal.com/hackmoney2022) hackathon:
+[This project](https://showcase.ethglobal.com/hackmoney2022/ipdex-interplanetary-decentralized-exchange-498o0) won the following prizes at the [HackMoney 2022](https://ethglobal.com/events/hackmoney2022) hackathon:
 
 🥇 [First Place: IPFS/Filecoin — Best Use](https://showcase.ethglobal.com/hackmoney2022/ipdex-interplanetary-decentralized-exchange-498o0)
 
